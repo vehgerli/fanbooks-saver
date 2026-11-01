@@ -5,7 +5,7 @@
 A browser extension that saves a fanfic from the page you have open as a **TXT** or **HTML** file —
 to read offline, on an e-reader, or just to keep.
 
-![FanBooks Saver](store/screens/screenshot-1.png)
+![FanBooks Saver](docs/screenshot.png)
 
 ## Supported sites
 
@@ -50,7 +50,7 @@ You can also paste a link to a work into the extension window, or right-click a 
 ## Privacy
 
 Everything happens in your browser, with your own login on the site. The extension has no server,
-no analytics and collects no data. See the [privacy policy](store/privacy-policy.html).
+no analytics and collects no data. See the [privacy policy](docs/privacy-policy.html).
 
 It doesn't bypass site restrictions: if a work is visible only to logged-in users, you need to be
 logged in. Comments, series and bookmarks are not downloaded — only the work itself.
