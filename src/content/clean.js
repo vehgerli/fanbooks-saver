@@ -111,7 +111,7 @@
       if (tag === 'hr') return void out.push('\n\n* * *\n\n');
       if (tag === 'img') {
         const alt = (node.getAttribute('alt') || '').trim();
-        return void out.push(alt ? `[Изображение: ${alt}]` : '[Изображение]');
+        return void out.push(alt ? `[${FBS.t('image')}: ${alt}]` : `[${FBS.t('image')}]`);
       }
       const block = BLOCK.has(tag);
       if (block) breakBlock();

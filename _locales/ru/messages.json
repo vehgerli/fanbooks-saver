@@ -1,0 +1,167 @@
+{
+  "extDescription": {
+    "message": "Сохраняет работу с открытой страницы в TXT или HTML: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me, Wattpad."
+  },
+  "siteFicbook": {
+    "message": "Книга Фанфиков"
+  },
+  "langTitle": {
+    "message": "Язык"
+  },
+  "popupFormat": {
+    "message": "Формат"
+  },
+  "popupThisPage": {
+    "message": "Эта страница"
+  },
+  "popupDownload": {
+    "message": "Скачать работу"
+  },
+  "popupByLink": {
+    "message": "По ссылке"
+  },
+  "popupOpenAndDownload": {
+    "message": "Открыть и скачать"
+  },
+  "popupSites": {
+    "message": "Сайты: $1"
+  },
+  "popupSoon": {
+    "message": "$1 (скоро)"
+  },
+  "popupOpenSupported": {
+    "message": "Откройте работу на одном из сайтов ниже."
+  },
+  "popupPlatformSoon": {
+    "message": "$1 — поддержка скоро будет."
+  },
+  "popupOpenWorkPage": {
+    "message": "$1: откройте страницу самой работы."
+  },
+  "popupWorkFound": {
+    "message": "$1, работа $2."
+  },
+  "popupStartFailed": {
+    "message": "Не получилось запустить скачивание"
+  },
+  "popupOpening": {
+    "message": "Открываю работу во вкладке…"
+  },
+  "menuLink": {
+    "message": "Скачать работу по ссылке"
+  },
+  "menuPage": {
+    "message": "Скачать эту работу"
+  },
+  "errTabClosed": {
+    "message": "Вкладку закрыли до загрузки"
+  },
+  "errNotArchive": {
+    "message": "Адрес не из списка архивов"
+  },
+  "errArchiveNoAnswer": {
+    "message": "Архив не ответил"
+  },
+  "overlayClose": {
+    "message": "Закрыть"
+  },
+  "image": {
+    "message": "Изображение"
+  },
+  "runBusy": {
+    "message": "Работа уже скачивается…"
+  },
+  "runUnsupportedSite": {
+    "message": "Этот сайт не поддерживается."
+  },
+  "runOpenWorkPage": {
+    "message": "Откройте страницу самой работы."
+  },
+  "runPlatformSoon": {
+    "message": "$1 пока не поддерживается — скоро будет."
+  },
+  "runBuilding": {
+    "message": "Собираю $1…"
+  },
+  "runSaved": {
+    "message": "Файл сохранён в «Загрузки»."
+  },
+  "runSavedCopy": {
+    "message": "Файл сохранён в «Загрузки». AO3 недоступен — источник: $1."
+  },
+  "runSavedDetail": {
+    "message": "$1 · глав: $2"
+  },
+  "runFailed": {
+    "message": "Не получилось скачать работу."
+  },
+  "copyLabel": {
+    "message": "Копия:"
+  },
+  "copyAo3saver": {
+    "message": "копия с ao3saver"
+  },
+  "copyWayback": {
+    "message": "копия Wayback Machine от $1"
+  },
+  "copyWaybackPartial": {
+    "message": "копия Wayback Machine от $1 (может быть только первая глава)"
+  },
+  "stageAo3Full": {
+    "message": "Загружаю работу целиком…"
+  },
+  "stageParsing": {
+    "message": "Разбираю страницу…"
+  },
+  "stageAo3saver": {
+    "message": "AO3 недоступен — ищу копию на ao3saver…"
+  },
+  "stageWayback": {
+    "message": "Ищу копию в Wayback Machine…"
+  },
+  "stageFirstChapter": {
+    "message": "Загружаю первую главу…"
+  },
+  "stageChapter": {
+    "message": "Глава $1 из $2"
+  },
+  "stageHeader": {
+    "message": "Загружаю шапку работы…"
+  },
+  "stagePart": {
+    "message": "Часть $1 из $2"
+  },
+  "stageWait": {
+    "message": "Сайт просит подождать — продолжу через $1 с"
+  },
+  "errAo3Down": {
+    "message": "AO3 сейчас недоступен, а сохранённой копии этой работы не нашлось ни на ao3saver, ни в Wayback Machine. Попробуйте позже — статус: status.archiveofourown.org."
+  },
+  "errLogin": {
+    "message": "Работа доступна только после входа на сайт $1."
+  },
+  "errRateLimited": {
+    "message": "Сайт временно ограничил доступ. Попробуйте через несколько минут."
+  },
+  "errCloudflare": {
+    "message": "Сайт не пустил запрос (проверка Cloudflare). Обновите страницу и попробуйте снова."
+  },
+  "errNotFound": {
+    "message": "Работа не найдена: возможно, её удалили или скрыли."
+  },
+  "errSiteStatus": {
+    "message": "$1: ошибка $2."
+  },
+  "errNoText": {
+    "message": "Сайт не показывает текст этой работы."
+  },
+  "errLayout": {
+    "message": "Не удалось распознать страницу работы: возможно, сайт поменял оформление."
+  },
+  "errNoChapterText": {
+    "message": "Сайт не показывает текст главы $1."
+  },
+  "errNoPartText": {
+    "message": "Сайт не показывает текст части $1."
+  }
+}

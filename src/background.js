@@ -41,7 +41,7 @@ function waitForTabLoaded(tabId) {
     function onRemoved(id) {
       if (id !== tabId) return;
       cleanup();
-      reject(new Error('Вкладку закрыли до загрузки'));
+      reject(new Error(FBS.t('errTabClosed')));
     }
     function cleanup() {
       chrome.tabs.onUpdated.removeListener(onUpdated);
@@ -66,7 +66,7 @@ const ARCHIVE_HOSTS = ['ao3saver.com', 'archive.org', 'web.archive.org'];
 async function fetchArchive(href) {
   const url = new URL(href);
   if (url.protocol !== 'https:' || !ARCHIVE_HOSTS.includes(url.hostname)) {
-    throw new Error('Адрес не из списка архивов');
+    throw new Error(FBS.t('errNotArchive'));
   }
   const response = await fetch(url.href);
   return { status: response.status, url: response.url, text: response.ok ? await response.text() : '' };
@@ -94,21 +94,28 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   return true;
 });
 
-chrome.runtime.onInstalled.addListener(() => {
+async function buildMenus() {
+  await FBS.loadLanguage();
   chrome.contextMenus.removeAll(() => {
     chrome.contextMenus.create({
       id: 'fbs-link',
-      title: 'Скачать работу по ссылке',
+      title: FBS.t('menuLink'),
       contexts: ['link'],
       targetUrlPatterns: FBS.platforms.urlPatterns(),
     });
     chrome.contextMenus.create({
       id: 'fbs-page',
-      title: 'Скачать эту работу',
+      title: FBS.t('menuPage'),
       contexts: ['page'],
       documentUrlPatterns: FBS.platforms.urlPatterns(),
     });
   });
+}
+
+chrome.runtime.onInstalled.addListener(buildMenus);
+// Язык сменили в окошке — подписи меню тоже.
+chrome.storage.onChanged.addListener((changes) => {
+  if (changes.lang) buildMenus();
 });
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {

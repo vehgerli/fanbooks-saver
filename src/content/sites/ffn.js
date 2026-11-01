@@ -6,6 +6,7 @@
   FBS.sites = FBS.sites || {};
   if (FBS.sites.ffn) return;
   const { line } = FBS.clean;
+  const { t } = FBS;
 
   class SiteError extends Error {}
 
@@ -22,16 +23,16 @@
       const response = await fetch(path, { credentials: 'include' });
       if (response.status === 429 && attempt < RETRY_WAITS_S.length) {
         for (let left = RETRY_WAITS_S[attempt]; left > 0; left--) {
-          onStage(stage, `Сайт просит подождать — продолжу через ${left} с`);
+          onStage(stage, t('stageWait', left));
           await sleep(1000);
         }
         continue;
       }
-      if (response.status === 429) throw new SiteError('Сайт временно ограничил доступ. Попробуйте через несколько минут.');
+      if (response.status === 429) throw new SiteError(t('errRateLimited'));
       if (response.status === 403) {
-        throw new SiteError('Сайт не пустил запрос (проверка Cloudflare). Обновите страницу и попробуйте снова.');
+        throw new SiteError(t('errCloudflare'));
       }
-      if (!response.ok) throw new SiteError(`FanFiction.net ответил ошибкой ${response.status}.`);
+      if (!response.ok) throw new SiteError(t('errSiteStatus', 'FanFiction.net', response.status));
       return new DOMParser().parseFromString(await response.text(), 'text/html');
     }
   }
@@ -66,15 +67,15 @@
 
   async function fetchWork(workId, onStage) {
     const url = `${location.origin}/s/${workId}/1/`;
-    const doc = await load(`/s/${workId}/1/`, onStage, 'Загружаю первую главу…');
+    const doc = await load(`/s/${workId}/1/`, onStage, t('stageFirstChapter'));
     const top = doc.querySelector('#profile_top');
     const title = line(top?.querySelector('b.xcontrast_txt'));
     if (!title) {
       // Удалённая работа отдаёт страницу с сообщением вместо шапки.
       if (doc.querySelector('.panel_warning, #content_wrapper_inner .gui_warning')) {
-        throw new SiteError('Работа не найдена: возможно, её удалили.');
+        throw new SiteError(t('errNotFound'));
       }
-      throw new SiteError('Не узнала страницу работы: возможно, сайт поменял оформление.');
+      throw new SiteError(t('errLayout'));
     }
 
     const authors = [...top.querySelectorAll('a.xcontrast_txt[href^="/u/"]')].map(line).filter(Boolean);
@@ -93,10 +94,10 @@
       let chapterDoc = doc;
       if (index > 0) {
         await sleep(PAUSE_MS);
-        chapterDoc = await load(`/s/${workId}/${number}/`, onStage, `Глава ${index + 1} из ${unique.length}`);
+        chapterDoc = await load(`/s/${workId}/${number}/`, onStage, t('stageChapter', index + 1, unique.length));
       }
       const body = readBody(chapterDoc);
-      if (!body) throw new SiteError(`Сайт не показывает текст главы ${index + 1}.`);
+      if (!body) throw new SiteError(t('errNoChapterText', index + 1));
       chapters.push({ title: titles[index], preface: [], body, endNotes: [] });
     }
 

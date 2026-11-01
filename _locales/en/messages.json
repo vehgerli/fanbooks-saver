@@ -1,0 +1,167 @@
+{
+  "extDescription": {
+    "message": "Saves a fanfic from the open page as TXT or HTML: AO3, Ficbook, FanFiction.net, Fanfics.me, Wattpad."
+  },
+  "siteFicbook": {
+    "message": "Ficbook"
+  },
+  "langTitle": {
+    "message": "Language"
+  },
+  "popupFormat": {
+    "message": "Format"
+  },
+  "popupThisPage": {
+    "message": "This page"
+  },
+  "popupDownload": {
+    "message": "Download work"
+  },
+  "popupByLink": {
+    "message": "By link"
+  },
+  "popupOpenAndDownload": {
+    "message": "Open and download"
+  },
+  "popupSites": {
+    "message": "Sites: $1"
+  },
+  "popupSoon": {
+    "message": "$1 (soon)"
+  },
+  "popupOpenSupported": {
+    "message": "Open a work on one of the sites below."
+  },
+  "popupPlatformSoon": {
+    "message": "$1: support is coming soon."
+  },
+  "popupOpenWorkPage": {
+    "message": "$1: open the work’s own page."
+  },
+  "popupWorkFound": {
+    "message": "$1, work $2."
+  },
+  "popupStartFailed": {
+    "message": "Couldn’t start the download"
+  },
+  "popupOpening": {
+    "message": "Opening the work in a tab…"
+  },
+  "menuLink": {
+    "message": "Download work from link"
+  },
+  "menuPage": {
+    "message": "Download this work"
+  },
+  "errTabClosed": {
+    "message": "The tab was closed before it loaded"
+  },
+  "errNotArchive": {
+    "message": "The address is not in the archive list"
+  },
+  "errArchiveNoAnswer": {
+    "message": "The archive didn’t respond"
+  },
+  "overlayClose": {
+    "message": "Close"
+  },
+  "image": {
+    "message": "Image"
+  },
+  "runBusy": {
+    "message": "This work is already downloading…"
+  },
+  "runUnsupportedSite": {
+    "message": "This site isn’t supported."
+  },
+  "runOpenWorkPage": {
+    "message": "Open the work’s own page."
+  },
+  "runPlatformSoon": {
+    "message": "$1 isn’t supported yet — coming soon."
+  },
+  "runBuilding": {
+    "message": "Building $1…"
+  },
+  "runSaved": {
+    "message": "File saved to Downloads."
+  },
+  "runSavedCopy": {
+    "message": "File saved to Downloads. AO3 is unavailable — source: $1."
+  },
+  "runSavedDetail": {
+    "message": "$1 · chapters: $2"
+  },
+  "runFailed": {
+    "message": "Couldn’t download the work."
+  },
+  "copyLabel": {
+    "message": "Copy:"
+  },
+  "copyAo3saver": {
+    "message": "ao3saver copy"
+  },
+  "copyWayback": {
+    "message": "Wayback Machine copy from $1"
+  },
+  "copyWaybackPartial": {
+    "message": "Wayback Machine copy from $1 (may contain only the first chapter)"
+  },
+  "stageAo3Full": {
+    "message": "Loading the whole work…"
+  },
+  "stageParsing": {
+    "message": "Reading the page…"
+  },
+  "stageAo3saver": {
+    "message": "AO3 is unavailable — looking for a copy on ao3saver…"
+  },
+  "stageWayback": {
+    "message": "Looking for a copy in the Wayback Machine…"
+  },
+  "stageFirstChapter": {
+    "message": "Loading the first chapter…"
+  },
+  "stageChapter": {
+    "message": "Chapter $1 of $2"
+  },
+  "stageHeader": {
+    "message": "Loading the work’s header…"
+  },
+  "stagePart": {
+    "message": "Part $1 of $2"
+  },
+  "stageWait": {
+    "message": "The site asks to wait — continuing in $1 s"
+  },
+  "errAo3Down": {
+    "message": "AO3 is unavailable right now, and no saved copy of this work was found on ao3saver or in the Wayback Machine. Try again later — status: status.archiveofourown.org."
+  },
+  "errLogin": {
+    "message": "This work is only available after logging in to $1."
+  },
+  "errRateLimited": {
+    "message": "The site has temporarily limited access. Try again in a few minutes."
+  },
+  "errCloudflare": {
+    "message": "The site blocked the request (Cloudflare check). Reload the page and try again."
+  },
+  "errNotFound": {
+    "message": "Work not found: it may have been deleted or hidden."
+  },
+  "errSiteStatus": {
+    "message": "$1 responded with error $2."
+  },
+  "errNoText": {
+    "message": "The site doesn’t show the text of this work."
+  },
+  "errLayout": {
+    "message": "Couldn’t recognize the work page: the site may have changed its layout."
+  },
+  "errNoChapterText": {
+    "message": "The site doesn’t show the text of chapter $1."
+  },
+  "errNoPartText": {
+    "message": "The site doesn’t show the text of part $1."
+  }
+}

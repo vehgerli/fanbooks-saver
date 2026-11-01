@@ -1,0 +1,167 @@
+{
+  "extDescription": {
+    "message": "Speichert eine Fanfiction von der geöffneten Seite als TXT oder HTML: AO3, Ficbook, FanFiction.net, Fanfics.me, Wattpad."
+  },
+  "siteFicbook": {
+    "message": "Ficbook"
+  },
+  "langTitle": {
+    "message": "Sprache"
+  },
+  "popupFormat": {
+    "message": "Format"
+  },
+  "popupThisPage": {
+    "message": "Diese Seite"
+  },
+  "popupDownload": {
+    "message": "Werk herunterladen"
+  },
+  "popupByLink": {
+    "message": "Per Link"
+  },
+  "popupOpenAndDownload": {
+    "message": "Öffnen und herunterladen"
+  },
+  "popupSites": {
+    "message": "Seiten: $1"
+  },
+  "popupSoon": {
+    "message": "$1 (bald)"
+  },
+  "popupOpenSupported": {
+    "message": "Öffne ein Werk auf einer der unten genannten Seiten."
+  },
+  "popupPlatformSoon": {
+    "message": "$1: Unterstützung kommt bald."
+  },
+  "popupOpenWorkPage": {
+    "message": "$1: Öffne die Seite des Werks selbst."
+  },
+  "popupWorkFound": {
+    "message": "$1, Werk $2."
+  },
+  "popupStartFailed": {
+    "message": "Download konnte nicht gestartet werden"
+  },
+  "popupOpening": {
+    "message": "Öffne das Werk in einem Tab…"
+  },
+  "menuLink": {
+    "message": "Werk über Link herunterladen"
+  },
+  "menuPage": {
+    "message": "Dieses Werk herunterladen"
+  },
+  "errTabClosed": {
+    "message": "Der Tab wurde vor dem Laden geschlossen"
+  },
+  "errNotArchive": {
+    "message": "Die Adresse ist nicht in der Archivliste"
+  },
+  "errArchiveNoAnswer": {
+    "message": "Das Archiv hat nicht geantwortet"
+  },
+  "overlayClose": {
+    "message": "Schließen"
+  },
+  "image": {
+    "message": "Bild"
+  },
+  "runBusy": {
+    "message": "Das Werk wird bereits heruntergeladen…"
+  },
+  "runUnsupportedSite": {
+    "message": "Diese Seite wird nicht unterstützt."
+  },
+  "runOpenWorkPage": {
+    "message": "Öffne die Seite des Werks selbst."
+  },
+  "runPlatformSoon": {
+    "message": "$1 wird noch nicht unterstützt – kommt bald."
+  },
+  "runBuilding": {
+    "message": "Erstelle $1…"
+  },
+  "runSaved": {
+    "message": "Datei in „Downloads“ gespeichert."
+  },
+  "runSavedCopy": {
+    "message": "Datei in „Downloads“ gespeichert. AO3 ist nicht erreichbar – Quelle: $1."
+  },
+  "runSavedDetail": {
+    "message": "$1 · Kapitel: $2"
+  },
+  "runFailed": {
+    "message": "Das Werk konnte nicht heruntergeladen werden."
+  },
+  "copyLabel": {
+    "message": "Kopie:"
+  },
+  "copyAo3saver": {
+    "message": "Kopie von ao3saver"
+  },
+  "copyWayback": {
+    "message": "Wayback-Machine-Kopie vom $1"
+  },
+  "copyWaybackPartial": {
+    "message": "Wayback-Machine-Kopie vom $1 (evtl. nur das erste Kapitel)"
+  },
+  "stageAo3Full": {
+    "message": "Lade das ganze Werk…"
+  },
+  "stageParsing": {
+    "message": "Lese die Seite…"
+  },
+  "stageAo3saver": {
+    "message": "AO3 ist nicht erreichbar – suche eine Kopie auf ao3saver…"
+  },
+  "stageWayback": {
+    "message": "Suche eine Kopie in der Wayback Machine…"
+  },
+  "stageFirstChapter": {
+    "message": "Lade das erste Kapitel…"
+  },
+  "stageChapter": {
+    "message": "Kapitel $1 von $2"
+  },
+  "stageHeader": {
+    "message": "Lade den Kopf des Werks…"
+  },
+  "stagePart": {
+    "message": "Teil $1 von $2"
+  },
+  "stageWait": {
+    "message": "Die Seite bittet um Geduld – weiter in $1 s"
+  },
+  "errAo3Down": {
+    "message": "AO3 ist gerade nicht erreichbar, und weder auf ao3saver noch in der Wayback Machine wurde eine gespeicherte Kopie gefunden. Versuche es später – Status: status.archiveofourown.org."
+  },
+  "errLogin": {
+    "message": "Dieses Werk ist nur nach Anmeldung bei $1 verfügbar."
+  },
+  "errRateLimited": {
+    "message": "Die Seite hat den Zugriff vorübergehend eingeschränkt. Versuche es in ein paar Minuten."
+  },
+  "errCloudflare": {
+    "message": "Die Seite hat die Anfrage blockiert (Cloudflare-Prüfung). Lade die Seite neu und versuche es erneut."
+  },
+  "errNotFound": {
+    "message": "Werk nicht gefunden: Es wurde vielleicht gelöscht oder verborgen."
+  },
+  "errSiteStatus": {
+    "message": "$1 hat mit Fehler $2 geantwortet."
+  },
+  "errNoText": {
+    "message": "Die Seite zeigt den Text dieses Werks nicht an."
+  },
+  "errLayout": {
+    "message": "Die Werkseite wurde nicht erkannt: Vielleicht hat die Seite ihr Layout geändert."
+  },
+  "errNoChapterText": {
+    "message": "Die Seite zeigt den Text von Kapitel $1 nicht an."
+  },
+  "errNoPartText": {
+    "message": "Die Seite zeigt den Text von Teil $1 nicht an."
+  }
+}

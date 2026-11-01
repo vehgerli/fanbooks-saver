@@ -6,6 +6,7 @@
   FBS.sites = FBS.sites || {};
   if (FBS.sites.ficbook) return;
   const { line } = FBS.clean;
+  const { t } = FBS;
 
   class SiteError extends Error {}
 
@@ -22,18 +23,18 @@
       onStage(stage);
       const response = await fetch(path, { credentials: 'include' });
       if (response.url.includes('/login')) {
-        throw new SiteError('Работа доступна только после входа на Книгу Фанфиков.');
+        throw new SiteError(t('errLogin', t('siteFicbook')));
       }
       if (response.status === 429 && attempt < RETRY_WAITS_S.length) {
         for (let left = RETRY_WAITS_S[attempt]; left > 0; left--) {
-          onStage(stage, `Сайт просит подождать — продолжу через ${left} с`);
+          onStage(stage, t('stageWait', left));
           await sleep(1000);
         }
         continue;
       }
-      if (response.status === 429) throw new SiteError('Сайт временно ограничил доступ. Попробуйте через несколько минут.');
-      if (response.status === 404) throw new SiteError('Работа не найдена: возможно, её удалили или скрыли.');
-      if (!response.ok) throw new SiteError(`Книга Фанфиков ответила ошибкой ${response.status}.`);
+      if (response.status === 429) throw new SiteError(t('errRateLimited'));
+      if (response.status === 404) throw new SiteError(t('errNotFound'));
+      if (!response.ok) throw new SiteError(t('errSiteStatus', t('siteFicbook'), response.status));
       return new DOMParser().parseFromString(await response.text(), 'text/html');
     }
   }
@@ -112,11 +113,11 @@
 
   async function fetchWork(workId, onStage) {
     const url = `${location.origin}/readfic/${workId}`;
-    const doc = await load(`/readfic/${workId}`, onStage, 'Загружаю шапку работы…');
+    const doc = await load(`/readfic/${workId}`, onStage, t('stageHeader'));
     // У работ из одной части заголовок стоит вне шапки и помечен headline, у остальных — name.
     const title = line(doc.querySelector('h1[itemprop="headline"], h1[itemprop="name"], .fanfic-hat h1, h1.heading'));
     if (!title) {
-      throw new SiteError('Не узнала страницу работы: возможно, сайт поменял оформление.');
+      throw new SiteError(t('errLayout'));
     }
 
     const links = [...doc.querySelectorAll('.list-of-fanfic-parts a.part-link[href]')];
@@ -129,17 +130,17 @@
     for (const [index, link] of links.entries()) {
       await sleep(PAUSE_MS);
       const path = new URL(link.getAttribute('href'), url).pathname;
-      const partDoc = await load(path, onStage, `Часть ${index + 1} из ${links.length}`);
+      const partDoc = await load(path, onStage, t('stagePart', index + 1, links.length));
       const part = readPart(partDoc, line(link.querySelector('h3')));
-      if (!part) throw new SiteError(`Сайт не показывает текст части ${index + 1}.`);
+      if (!part) throw new SiteError(t('errNoPartText', index + 1));
       chapters.push(part);
     }
-    if (!chapters.length) throw new SiteError('Сайт не показывает текст этой работы.');
+    if (!chapters.length) throw new SiteError(t('errNoText'));
 
     const { meta, preface } = readHat(doc);
     const { authors, others } = readCreators(doc);
     return {
-      site: 'Книга Фанфиков',
+      site: t('siteFicbook'),
       url,
       title,
       authors,

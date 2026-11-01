@@ -5,29 +5,29 @@
   let busy = false;
 
   async function start(format) {
-    const { overlay, platforms, output, sites } = FBS;
-    if (busy) return overlay.working('Работа уже скачивается…');
+    await FBS.loadLanguage();
+    const { overlay, platforms, output, sites, t } = FBS;
+    if (busy) return overlay.working(t('runBusy'));
     const found = platforms.detect(location.href);
-    if (!found) return overlay.error('Этот сайт не поддерживается.');
+    if (!found) return overlay.error(t('runUnsupportedSite'));
     const { platform, workId } = found;
-    if (!workId) return overlay.error('Откройте страницу самой работы.', platform.name);
+    if (!workId) return overlay.error(t('runOpenWorkPage'), platform.name);
     const site = sites[platform.id];
-    if (!platform.ready || !site) return overlay.error(`${platform.name} пока не поддерживается — скоро будет.`);
+    if (!platform.ready || !site) return overlay.error(t('runPlatformSoon', platform.name));
 
     busy = true;
     try {
       const work = await site.fetchWork(workId, (stage, detail) =>
         overlay.working(stage, detail ?? platform.name),
       );
-      overlay.working(`Собираю ${format.toUpperCase()}…`, work.title);
+      overlay.working(t('runBuilding', format.toUpperCase()), work.title);
       const file = output.build(work, format);
       output.save(file);
       const chapters = work.chapters.length;
-      const saved = work.copy ? `Файл сохранён в «Загрузки». AO3 недоступен — это ${work.copy}.` : 'Файл сохранён в «Загрузки».';
-      overlay.done(saved, `${file.name} · глав: ${chapters}`);
+      overlay.done(work.copy ? t('runSavedCopy', work.copy) : t('runSaved'), t('runSavedDetail', file.name, chapters));
     } catch (error) {
       const known = error instanceof site.SiteError;
-      overlay.error(known ? error.message : 'Не получилось скачать работу.', known ? platform.name : String(error));
+      overlay.error(known ? error.message : t('runFailed'), known ? platform.name : String(error));
       if (!known) console.error('[FanBooks Saver]', error);
     } finally {
       busy = false;

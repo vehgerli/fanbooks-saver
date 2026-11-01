@@ -1,0 +1,167 @@
+{
+  "extDescription": {
+    "message": "Enregistre une fanfiction depuis la page ouverte en TXT ou HTML : AO3, Ficbook, FanFiction.net, Fanfics.me, Wattpad."
+  },
+  "siteFicbook": {
+    "message": "Ficbook"
+  },
+  "langTitle": {
+    "message": "Langue"
+  },
+  "popupFormat": {
+    "message": "Format"
+  },
+  "popupThisPage": {
+    "message": "Cette page"
+  },
+  "popupDownload": {
+    "message": "Télécharger l’œuvre"
+  },
+  "popupByLink": {
+    "message": "Par lien"
+  },
+  "popupOpenAndDownload": {
+    "message": "Ouvrir et télécharger"
+  },
+  "popupSites": {
+    "message": "Sites : $1"
+  },
+  "popupSoon": {
+    "message": "$1 (bientôt)"
+  },
+  "popupOpenSupported": {
+    "message": "Ouvrez une œuvre sur l’un des sites ci-dessous."
+  },
+  "popupPlatformSoon": {
+    "message": "$1 : prise en charge bientôt disponible."
+  },
+  "popupOpenWorkPage": {
+    "message": "$1 : ouvrez la page de l’œuvre elle-même."
+  },
+  "popupWorkFound": {
+    "message": "$1, œuvre $2."
+  },
+  "popupStartFailed": {
+    "message": "Impossible de lancer le téléchargement"
+  },
+  "popupOpening": {
+    "message": "Ouverture de l’œuvre dans un onglet…"
+  },
+  "menuLink": {
+    "message": "Télécharger l’œuvre du lien"
+  },
+  "menuPage": {
+    "message": "Télécharger cette œuvre"
+  },
+  "errTabClosed": {
+    "message": "L’onglet a été fermé avant son chargement"
+  },
+  "errNotArchive": {
+    "message": "L’adresse ne fait pas partie des archives"
+  },
+  "errArchiveNoAnswer": {
+    "message": "L’archive n’a pas répondu"
+  },
+  "overlayClose": {
+    "message": "Fermer"
+  },
+  "image": {
+    "message": "Image"
+  },
+  "runBusy": {
+    "message": "L’œuvre est déjà en cours de téléchargement…"
+  },
+  "runUnsupportedSite": {
+    "message": "Ce site n’est pas pris en charge."
+  },
+  "runOpenWorkPage": {
+    "message": "Ouvrez la page de l’œuvre elle-même."
+  },
+  "runPlatformSoon": {
+    "message": "$1 n’est pas encore pris en charge — bientôt."
+  },
+  "runBuilding": {
+    "message": "Création du $1…"
+  },
+  "runSaved": {
+    "message": "Fichier enregistré dans Téléchargements."
+  },
+  "runSavedCopy": {
+    "message": "Fichier enregistré dans Téléchargements. AO3 est indisponible — source : $1."
+  },
+  "runSavedDetail": {
+    "message": "$1 · chapitres : $2"
+  },
+  "runFailed": {
+    "message": "Impossible de télécharger l’œuvre."
+  },
+  "copyLabel": {
+    "message": "Copie :"
+  },
+  "copyAo3saver": {
+    "message": "copie d’ao3saver"
+  },
+  "copyWayback": {
+    "message": "copie Wayback Machine du $1"
+  },
+  "copyWaybackPartial": {
+    "message": "copie Wayback Machine du $1 (peut-être seulement le premier chapitre)"
+  },
+  "stageAo3Full": {
+    "message": "Chargement de l’œuvre entière…"
+  },
+  "stageParsing": {
+    "message": "Analyse de la page…"
+  },
+  "stageAo3saver": {
+    "message": "AO3 est indisponible — recherche d’une copie sur ao3saver…"
+  },
+  "stageWayback": {
+    "message": "Recherche d’une copie dans la Wayback Machine…"
+  },
+  "stageFirstChapter": {
+    "message": "Chargement du premier chapitre…"
+  },
+  "stageChapter": {
+    "message": "Chapitre $1 sur $2"
+  },
+  "stageHeader": {
+    "message": "Chargement de l’en-tête de l’œuvre…"
+  },
+  "stagePart": {
+    "message": "Partie $1 sur $2"
+  },
+  "stageWait": {
+    "message": "Le site demande d’attendre — reprise dans $1 s"
+  },
+  "errAo3Down": {
+    "message": "AO3 est indisponible pour le moment et aucune copie de cette œuvre n’a été trouvée sur ao3saver ni dans la Wayback Machine. Réessayez plus tard — état : status.archiveofourown.org."
+  },
+  "errLogin": {
+    "message": "Cette œuvre n’est disponible qu’après connexion à $1."
+  },
+  "errRateLimited": {
+    "message": "Le site a temporairement limité l’accès. Réessayez dans quelques minutes."
+  },
+  "errCloudflare": {
+    "message": "Le site a bloqué la requête (vérification Cloudflare). Rechargez la page et réessayez."
+  },
+  "errNotFound": {
+    "message": "Œuvre introuvable : elle a peut-être été supprimée ou masquée."
+  },
+  "errSiteStatus": {
+    "message": "$1 a répondu avec l’erreur $2."
+  },
+  "errNoText": {
+    "message": "Le site n’affiche pas le texte de cette œuvre."
+  },
+  "errLayout": {
+    "message": "Page de l’œuvre non reconnue : le site a peut-être changé de mise en page."
+  },
+  "errNoChapterText": {
+    "message": "Le site n’affiche pas le texte du chapitre $1."
+  },
+  "errNoPartText": {
+    "message": "Le site n’affiche pas le texte de la partie $1."
+  }
+}

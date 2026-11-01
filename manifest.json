@@ -2,7 +2,8 @@
   "manifest_version": 3,
   "name": "FanBooks Saver",
   "version": "0.1.0",
-  "description": "Сохраняет работу с открытой страницы в TXT или HTML: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me, Wattpad.",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
@@ -20,7 +21,11 @@
   "background": {
     "service_worker": "src/background.js"
   },
-  "permissions": ["scripting", "storage", "contextMenus"],
+  "permissions": [
+    "scripting",
+    "storage",
+    "contextMenus"
+  ],
   "host_permissions": [
     "https://archiveofourown.org/*",
     "https://*.archiveofourown.org/*",

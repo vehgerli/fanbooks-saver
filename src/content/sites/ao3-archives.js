@@ -6,10 +6,11 @@
   const FBS = (globalThis.FBS = globalThis.FBS || {});
   if (FBS.ao3Archives) return;
   const { line } = FBS.clean;
+  const { t } = FBS;
 
   async function get(url) {
     const response = await chrome.runtime.sendMessage({ type: 'fetch-archive', url });
-    if (!response?.ok) throw new Error(response?.error || 'Архив не ответил');
+    if (!response?.ok) throw new Error(response?.error || t('errArchiveNoAnswer'));
     return response;
   }
 
@@ -74,8 +75,8 @@
     if (response.status !== 200) return null;
     const work = parseDownload(parseHtml(response.text), `https://archiveofourown.org/works/${workId}`);
     if (!work) return null;
-    work.meta.unshift({ label: 'Копия:', value: `ao3saver.com — ${response.url}` });
-    work.copy = 'копия с ao3saver';
+    work.copy = t('copyAo3saver');
+    work.meta.unshift({ label: t('copyLabel'), value: `${work.copy} — ${response.url}` });
     return work;
   }
 
@@ -106,12 +107,12 @@
       } catch {
         continue;
       }
-      const partial = candidate.includes('view_full_work') ? '' : ' (может быть только первая глава)';
+      const date = waybackDate(snapshot.timestamp);
+      work.copy = candidate.includes('view_full_work') ? t('copyWayback', date) : t('copyWaybackPartial', date);
       work.meta.unshift({
-        label: 'Копия:',
-        value: `Wayback Machine от ${waybackDate(snapshot.timestamp)}${partial} — https://web.archive.org/web/${snapshot.timestamp}/${original}`,
+        label: t('copyLabel'),
+        value: `${work.copy} — https://web.archive.org/web/${snapshot.timestamp}/${original}`,
       });
-      work.copy = `копия Wayback Machine от ${waybackDate(snapshot.timestamp)}${partial}`;
       return work;
     }
     return null;
@@ -119,10 +120,10 @@
 
   /** Копия работы из архивов или null, если её нигде нет. */
   async function fetchCopy(workId, { parse, onStage }) {
-    onStage('AO3 недоступен — ищу копию на ao3saver…');
+    onStage(t('stageAo3saver'));
     const saved = await fromAo3saver(workId).catch(() => null);
     if (saved) return saved;
-    onStage('Ищу копию в Wayback Machine…');
+    onStage(t('stageWayback'));
     return fromWayback(workId, parse).catch(() => null);
   }
 

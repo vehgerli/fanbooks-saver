@@ -1,0 +1,167 @@
+{
+  "extDescription": {
+    "message": "Зберігає роботу з відкритої сторінки у TXT або HTML: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me, Wattpad."
+  },
+  "siteFicbook": {
+    "message": "Книга Фанфиков"
+  },
+  "langTitle": {
+    "message": "Мова"
+  },
+  "popupFormat": {
+    "message": "Формат"
+  },
+  "popupThisPage": {
+    "message": "Ця сторінка"
+  },
+  "popupDownload": {
+    "message": "Завантажити роботу"
+  },
+  "popupByLink": {
+    "message": "За посиланням"
+  },
+  "popupOpenAndDownload": {
+    "message": "Відкрити й завантажити"
+  },
+  "popupSites": {
+    "message": "Сайти: $1"
+  },
+  "popupSoon": {
+    "message": "$1 (незабаром)"
+  },
+  "popupOpenSupported": {
+    "message": "Відкрийте роботу на одному із сайтів нижче."
+  },
+  "popupPlatformSoon": {
+    "message": "$1 — підтримка незабаром буде."
+  },
+  "popupOpenWorkPage": {
+    "message": "$1: відкрийте сторінку самої роботи."
+  },
+  "popupWorkFound": {
+    "message": "$1, робота $2."
+  },
+  "popupStartFailed": {
+    "message": "Не вдалося запустити завантаження"
+  },
+  "popupOpening": {
+    "message": "Відкриваю роботу у вкладці…"
+  },
+  "menuLink": {
+    "message": "Завантажити роботу за посиланням"
+  },
+  "menuPage": {
+    "message": "Завантажити цю роботу"
+  },
+  "errTabClosed": {
+    "message": "Вкладку закрили до завантаження"
+  },
+  "errNotArchive": {
+    "message": "Адреса не зі списку архівів"
+  },
+  "errArchiveNoAnswer": {
+    "message": "Архів не відповів"
+  },
+  "overlayClose": {
+    "message": "Закрити"
+  },
+  "image": {
+    "message": "Зображення"
+  },
+  "runBusy": {
+    "message": "Робота вже завантажується…"
+  },
+  "runUnsupportedSite": {
+    "message": "Цей сайт не підтримується."
+  },
+  "runOpenWorkPage": {
+    "message": "Відкрийте сторінку самої роботи."
+  },
+  "runPlatformSoon": {
+    "message": "$1 поки не підтримується — незабаром буде."
+  },
+  "runBuilding": {
+    "message": "Збираю $1…"
+  },
+  "runSaved": {
+    "message": "Файл збережено в «Завантаження»."
+  },
+  "runSavedCopy": {
+    "message": "Файл збережено в «Завантаження». AO3 недоступний — джерело: $1."
+  },
+  "runSavedDetail": {
+    "message": "$1 · розділів: $2"
+  },
+  "runFailed": {
+    "message": "Не вдалося завантажити роботу."
+  },
+  "copyLabel": {
+    "message": "Копія:"
+  },
+  "copyAo3saver": {
+    "message": "копія з ao3saver"
+  },
+  "copyWayback": {
+    "message": "копія Wayback Machine від $1"
+  },
+  "copyWaybackPartial": {
+    "message": "копія Wayback Machine від $1 (може бути лише перший розділ)"
+  },
+  "stageAo3Full": {
+    "message": "Завантажую роботу повністю…"
+  },
+  "stageParsing": {
+    "message": "Розбираю сторінку…"
+  },
+  "stageAo3saver": {
+    "message": "AO3 недоступний — шукаю копію на ao3saver…"
+  },
+  "stageWayback": {
+    "message": "Шукаю копію у Wayback Machine…"
+  },
+  "stageFirstChapter": {
+    "message": "Завантажую перший розділ…"
+  },
+  "stageChapter": {
+    "message": "Розділ $1 з $2"
+  },
+  "stageHeader": {
+    "message": "Завантажую шапку роботи…"
+  },
+  "stagePart": {
+    "message": "Частина $1 з $2"
+  },
+  "stageWait": {
+    "message": "Сайт просить зачекати — продовжу через $1 с"
+  },
+  "errAo3Down": {
+    "message": "AO3 зараз недоступний, а збереженої копії цієї роботи не знайшлося ні на ao3saver, ні у Wayback Machine. Спробуйте пізніше — статус: status.archiveofourown.org."
+  },
+  "errLogin": {
+    "message": "Робота доступна лише після входу на сайт $1."
+  },
+  "errRateLimited": {
+    "message": "Сайт тимчасово обмежив доступ. Спробуйте за кілька хвилин."
+  },
+  "errCloudflare": {
+    "message": "Сайт не пропустив запит (перевірка Cloudflare). Оновіть сторінку й спробуйте знову."
+  },
+  "errNotFound": {
+    "message": "Роботу не знайдено: можливо, її видалили або приховали."
+  },
+  "errSiteStatus": {
+    "message": "$1: помилка $2."
+  },
+  "errNoText": {
+    "message": "Сайт не показує текст цієї роботи."
+  },
+  "errLayout": {
+    "message": "Не вдалося розпізнати сторінку роботи: можливо, сайт змінив оформлення."
+  },
+  "errNoChapterText": {
+    "message": "Сайт не показує текст розділу $1."
+  },
+  "errNoPartText": {
+    "message": "Сайт не показує текст частини $1."
+  }
+}

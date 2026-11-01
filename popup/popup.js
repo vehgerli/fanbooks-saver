@@ -1,5 +1,22 @@
 // Окошко расширения: выбор формата, скачивание с текущей вкладки или по ссылке.
-const { platforms } = globalThis.FBS;
+const { platforms, t, languages, loadLanguage } = globalThis.FBS;
+
+/** Язык окошка: подписи из выбранного языка и список языков в шапке. */
+async function applyLanguage() {
+  const lang = await loadLanguage();
+  document.documentElement.lang = lang;
+  for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
+  const select = document.getElementById('lang');
+  select.title = t('langTitle');
+  select.setAttribute('aria-label', t('langTitle'));
+  select.replaceChildren(...languages.map(([code, name]) => new Option(name, code)));
+  select.value = lang;
+}
+
+document.getElementById('lang').addEventListener('change', async (event) => {
+  await chrome.storage.local.set({ lang: event.target.value });
+  location.reload(); // Проще всего перерисовать окошко заново на новом языке.
+});
 
 const pageStatus = document.getElementById('page-status');
 const pageButton = document.getElementById('download-page');
@@ -28,22 +45,23 @@ for (const input of document.querySelectorAll('input[name="format"]')) {
 
 /** Что можно сделать с открытой вкладкой. */
 function describe(found) {
-  if (!found) return { text: 'Откройте работу на одном из сайтов ниже.' };
+  if (!found) return { text: t('popupOpenSupported') };
   const { platform, workId } = found;
-  if (!platform.ready) return { text: `${platform.name} — поддержка скоро будет.` };
-  if (!workId) return { text: `${platform.name}: откройте страницу самой работы.` };
-  return { text: `${platform.name}, работа ${workId}.`, canDownload: true };
+  if (!platform.ready) return { text: t('popupPlatformSoon', platform.name) };
+  if (!workId) return { text: t('popupOpenWorkPage', platform.name) };
+  return { text: t('popupWorkFound', platform.name, workId), canDownload: true };
 }
 
 async function send(message) {
   const response = await chrome.runtime.sendMessage(message);
-  if (!response?.ok) throw new Error(response?.error || 'Не получилось запустить скачивание');
+  if (!response?.ok) throw new Error(response?.error || t('popupStartFailed'));
 }
 
 async function init() {
+  await applyLanguage();
   await loadFormat();
   document.getElementById('sites').textContent =
-    'Сайты: ' + platforms.list.map((p) => (p.ready ? p.name : `${p.name} (скоро)`)).join(', ');
+    t('popupSites', platforms.list.map((p) => (p.ready ? p.name : t('popupSoon', p.name))).join(', '));
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   const state = describe(tab?.url ? platforms.detect(tab.url) : null);
@@ -67,7 +85,7 @@ linkForm.addEventListener('submit', async (event) => {
   const url = linkInput.value.trim();
   const state = describe(platforms.detect(url));
   if (!state.canDownload) return setStatus(linkStatus, state.text, true);
-  setStatus(linkStatus, 'Открываю работу во вкладке…');
+  setStatus(linkStatus, t('popupOpening'));
   try {
     // Окошко закроется, когда откроется вкладка; скачивание продолжит фоновый скрипт.
     await send({ type: 'download-url', url, format: currentFormat() });

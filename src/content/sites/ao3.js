@@ -4,6 +4,7 @@
   FBS.sites = FBS.sites || {};
   if (FBS.sites.ao3) return;
   const { line } = FBS.clean;
+  const { t } = FBS;
 
   class SiteError extends Error {}
 
@@ -76,7 +77,7 @@
     const title = line(doc.querySelector('h2.title.heading'));
     const chapters = readChapters(doc);
     if (!title || !chapters.length) {
-      throw new SiteError('Сайт не показывает текст этой работы.');
+      throw new SiteError(t('errNoText'));
     }
     const byline = doc.querySelector('h3.byline');
     const authorLinks = byline ? [...byline.querySelectorAll('a[rel="author"]')] : [];
@@ -97,7 +98,7 @@
   async function fetchWork(workId, onStage) {
     const origin = location.origin;
     const url = `${origin}/works/${workId}`;
-    onStage('Загружаю работу целиком…');
+    onStage(t('stageAo3Full'));
     // view_adult=true — та же ссылка, что кнопка «Proceed» в предупреждении о взрослом содержании.
     let response;
     try {
@@ -109,18 +110,15 @@
     if (!response || [418, 502, 503].includes(response.status)) {
       const copy = await FBS.ao3Archives.fetchCopy(workId, { parse, onStage });
       if (copy) return copy;
-      throw new SiteError(
-        'AO3 сейчас недоступен, а сохранённой копии этой работы не нашлось ни на ao3saver, ни в Wayback Machine. ' +
-          'Попробуйте позже — статус: status.archiveofourown.org.',
-      );
+      throw new SiteError(t('errAo3Down'));
     }
     if (response.url.includes('/users/login')) {
-      throw new SiteError('Работа доступна только после входа на AO3.');
+      throw new SiteError(t('errLogin', 'AO3'));
     }
-    if (response.status === 429) throw new SiteError('AO3 просит подождать: слишком много запросов. Попробуйте через пару минут.');
-    if (response.status === 404) throw new SiteError('Работа не найдена: возможно, её удалили или скрыли.');
-    if (!response.ok) throw new SiteError(`AO3 ответил ошибкой ${response.status}.`);
-    onStage('Разбираю страницу…');
+    if (response.status === 429) throw new SiteError(t('errRateLimited'));
+    if (response.status === 404) throw new SiteError(t('errNotFound'));
+    if (!response.ok) throw new SiteError(t('errSiteStatus', 'AO3', response.status));
+    onStage(t('stageParsing'));
     const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
     return parse(doc, url);
   }

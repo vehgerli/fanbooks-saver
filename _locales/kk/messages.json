@@ -1,0 +1,167 @@
+{
+  "extDescription": {
+    "message": "Ашық беттегі шығарманы TXT немесе HTML пішімінде сақтайды: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me, Wattpad."
+  },
+  "siteFicbook": {
+    "message": "Книга Фанфиков"
+  },
+  "langTitle": {
+    "message": "Тіл"
+  },
+  "popupFormat": {
+    "message": "Пішім"
+  },
+  "popupThisPage": {
+    "message": "Осы бет"
+  },
+  "popupDownload": {
+    "message": "Шығарманы жүктеу"
+  },
+  "popupByLink": {
+    "message": "Сілтеме бойынша"
+  },
+  "popupOpenAndDownload": {
+    "message": "Ашу және жүктеу"
+  },
+  "popupSites": {
+    "message": "Сайттар: $1"
+  },
+  "popupSoon": {
+    "message": "$1 (жақында)"
+  },
+  "popupOpenSupported": {
+    "message": "Төмендегі сайттардың бірінде шығарманы ашыңыз."
+  },
+  "popupPlatformSoon": {
+    "message": "$1 — қолдау жақында болады."
+  },
+  "popupOpenWorkPage": {
+    "message": "$1: шығарманың өз бетін ашыңыз."
+  },
+  "popupWorkFound": {
+    "message": "$1, шығарма $2."
+  },
+  "popupStartFailed": {
+    "message": "Жүктеуді бастау мүмкін болмады"
+  },
+  "popupOpening": {
+    "message": "Шығарманы қойындыда ашып жатырмын…"
+  },
+  "menuLink": {
+    "message": "Шығарманы сілтеме бойынша жүктеу"
+  },
+  "menuPage": {
+    "message": "Осы шығарманы жүктеу"
+  },
+  "errTabClosed": {
+    "message": "Қойынды жүктелмей тұрып жабылды"
+  },
+  "errNotArchive": {
+    "message": "Мекенжай мұрағаттар тізімінде жоқ"
+  },
+  "errArchiveNoAnswer": {
+    "message": "Мұрағат жауап бермеді"
+  },
+  "overlayClose": {
+    "message": "Жабу"
+  },
+  "image": {
+    "message": "Сурет"
+  },
+  "runBusy": {
+    "message": "Шығарма жүктеліп жатыр…"
+  },
+  "runUnsupportedSite": {
+    "message": "Бұл сайтқа қолдау көрсетілмейді."
+  },
+  "runOpenWorkPage": {
+    "message": "Шығарманың өз бетін ашыңыз."
+  },
+  "runPlatformSoon": {
+    "message": "$1 әзірге қолдау көрмейді — жақында болады."
+  },
+  "runBuilding": {
+    "message": "$1 жинап жатырмын…"
+  },
+  "runSaved": {
+    "message": "Файл «Жүктеулер» қалтасына сақталды."
+  },
+  "runSavedCopy": {
+    "message": "Файл «Жүктеулер» қалтасына сақталды. AO3 қолжетімсіз — дереккөз: $1."
+  },
+  "runSavedDetail": {
+    "message": "$1 · тараулар: $2"
+  },
+  "runFailed": {
+    "message": "Шығарманы жүктеу мүмкін болмады."
+  },
+  "copyLabel": {
+    "message": "Көшірме:"
+  },
+  "copyAo3saver": {
+    "message": "ao3saver көшірмесі"
+  },
+  "copyWayback": {
+    "message": "Wayback Machine көшірмесі, $1"
+  },
+  "copyWaybackPartial": {
+    "message": "Wayback Machine көшірмесі, $1 (тек бірінші тарау болуы мүмкін)"
+  },
+  "stageAo3Full": {
+    "message": "Шығарманы толық жүктеп жатырмын…"
+  },
+  "stageParsing": {
+    "message": "Бетті талдап жатырмын…"
+  },
+  "stageAo3saver": {
+    "message": "AO3 қолжетімсіз — ao3saver-ден көшірме іздеп жатырмын…"
+  },
+  "stageWayback": {
+    "message": "Wayback Machine-нен көшірме іздеп жатырмын…"
+  },
+  "stageFirstChapter": {
+    "message": "Бірінші тарауды жүктеп жатырмын…"
+  },
+  "stageChapter": {
+    "message": "$2 тараудың $1-сі"
+  },
+  "stageHeader": {
+    "message": "Шығарманың тақырыптамасын жүктеп жатырмын…"
+  },
+  "stagePart": {
+    "message": "$2 бөлімнің $1-сі"
+  },
+  "stageWait": {
+    "message": "Сайт күте тұруды сұрайды — $1 с кейін жалғастырамын"
+  },
+  "errAo3Down": {
+    "message": "AO3 қазір қолжетімсіз, ал бұл шығарманың сақталған көшірмесі ao3saver-де де, Wayback Machine-де де табылмады. Кейінірек көріңіз — күйі: status.archiveofourown.org."
+  },
+  "errLogin": {
+    "message": "Шығарма тек $1 сайтына кіргеннен кейін қолжетімді."
+  },
+  "errRateLimited": {
+    "message": "Сайт қолжетімділікті уақытша шектеді. Бірнеше минуттан кейін көріңіз."
+  },
+  "errCloudflare": {
+    "message": "Сайт сұранысты өткізбеді (Cloudflare тексерісі). Бетті жаңартып, қайта көріңіз."
+  },
+  "errNotFound": {
+    "message": "Шығарма табылмады: жойылған не жасырылған болуы мүмкін."
+  },
+  "errSiteStatus": {
+    "message": "$1: $2 қатесі."
+  },
+  "errNoText": {
+    "message": "Сайт бұл шығарманың мәтінін көрсетпейді."
+  },
+  "errLayout": {
+    "message": "Шығарма бетін тану мүмкін болмады: сайт безендіруін өзгерткен болуы мүмкін."
+  },
+  "errNoChapterText": {
+    "message": "Сайт $1-тараудың мәтінін көрсетпейді."
+  },
+  "errNoPartText": {
+    "message": "Сайт $1-бөлімнің мәтінін көрсетпейді."
+  }
+}

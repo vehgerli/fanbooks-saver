@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>FanBooks Saver</title>
@@ -9,10 +9,11 @@
     <header>
       <img src="../icons/icon32.png" alt="" width="24" height="24" />
       <h1>FanBooks Saver</h1>
+      <select id="lang" class="lang"></select>
     </header>
 
     <section>
-      <h2>Формат</h2>
+      <h2 data-i18n="popupFormat"></h2>
       <div class="formats" role="radiogroup">
         <label><input type="radio" name="format" value="txt" checked /> <span>TXT</span></label>
         <label><input type="radio" name="format" value="html" /> <span>HTML</span></label>
@@ -20,16 +21,16 @@
     </section>
 
     <section>
-      <h2>Эта страница</h2>
+      <h2 data-i18n="popupThisPage"></h2>
       <p id="page-status" class="status"></p>
-      <button id="download-page" type="button" hidden>Скачать работу</button>
+      <button id="download-page" type="button" hidden data-i18n="popupDownload"></button>
     </section>
 
     <section>
-      <h2>По ссылке</h2>
+      <h2 data-i18n="popupByLink"></h2>
       <form id="link-form">
         <input id="link" type="url" placeholder="https://archiveofourown.org/works/…" required />
-        <button type="submit">Открыть и скачать</button>
+        <button type="submit" data-i18n="popupOpenAndDownload"></button>
       </form>
       <p id="link-status" class="status"></p>
     </section>

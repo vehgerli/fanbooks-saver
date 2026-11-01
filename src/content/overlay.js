@@ -34,7 +34,7 @@
       state === 'working' ? '<span class="spin"></span>' : `<span class="mark">${state === 'done' ? '✓' : '!'}</span>`;
     host.shadowRoot.innerHTML = `<style>${STYLE}</style>
       <div class="box ${state}">
-        <div class="head">${icon}<span>FanBooks Saver</span><button class="close" title="Закрыть">×</button></div>
+        <div class="head">${icon}<span>FanBooks Saver</span><button class="close" title="${FBS.t('overlayClose')}">×</button></div>
         <div class="text"></div>
         <div class="detail"></div>
       </div>`;
