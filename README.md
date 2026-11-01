@@ -1,92 +1,63 @@
 # FanBooks Saver
 
-Расширение для Chrome и Яндекс Браузера (и любых браузеров на Chromium): сохраняет работу
-с открытой страницы сайта в TXT или HTML. Работает целиком в браузере пользователя, с его входом
-на сайт. Своего сервера нет.
+**English** · [Русский](README.ru.md)
 
-| Сайт | Состояние |
-|---|---|
-| AO3 | готово |
-| Книга Фанфиков | готово |
-| FanFiction.net | готово |
-| Fanfics.me | скоро |
-| Wattpad | скоро |
+A browser extension that saves a fanfic from the page you have open as a **TXT** or **HTML** file —
+to read offline, on an e-reader, or just to keep.
 
-Сборки нет: это обычные файлы, браузер загружает папку как есть.
+![FanBooks Saver](store/screens/screenshot-1.png)
 
-## Установка для проверки
+## Supported sites
 
-### Chrome
+- [Archive of Our Own (AO3)](https://archiveofourown.org)
+- [Ficbook](https://ficbook.net)
+- [FanFiction.net](https://www.fanfiction.net)
 
-1. Открыть `chrome://extensions`.
-2. Справа вверху включить **«Режим разработчика»**.
-3. Нажать **«Загрузить распакованное расширение»** и выбрать папку `FanBooks Saver`
-   (ту, где лежит `manifest.json`).
-4. Нажать значок пазла на панели браузера и закрепить FanBooks Saver булавкой, чтобы красная «F»
-   всегда была видна.
+Fanfics.me and Wattpad are coming later.
 
-### Яндекс Браузер
+## Features
 
-1. Открыть `browser://extensions` (или «Настройки» → «Дополнения»).
-2. Включить **«Режим разработчика»**.
-3. **«Загрузить распакованное расширение»** → папка `FanBooks Saver`.
+- **All chapters in one file** — with the work's header: title, author, tags, summary and notes.
+- **The author's formatting is kept**: italics, bold, alignment, lists, images.
+- **Three ways to download**: from the open page, by pasting a link, or from the right-click menu.
+- **When AO3 is down**, the extension looks for a saved copy of the work on ao3saver and in the
+  Internet Archive's Wayback Machine, and tells you where the copy came from and how old it is.
+- **8 interface languages**: English, Русский, Українська, Қазақша, Español, Deutsch, Français, Italiano.
 
-## Как пользоваться
+## Install
 
-- **С открытой страницы.** Открыть работу на AO3 (любую главу) → нажать «F» → выбрать TXT
-  или HTML → «Скачать работу». В правом нижнем углу страницы появится плашка с ходом скачивания.
-  Файл попадёт в обычные «Загрузки».
-- **По ссылке.** Вставить ссылку в поле «По ссылке» → «Открыть и скачать». Работа откроется
-  в новой вкладке и скачается оттуда.
-- **Правой кнопкой.** По ссылке на работу → «Скачать работу по ссылке», или по самой странице →
-  «Скачать эту работу». Формат берётся тот, что выбран в окошке последним.
+The Chrome Web Store page is coming soon. Until then, you can install it manually in Chrome,
+Yandex Browser, Edge or any other Chromium-based browser:
 
-Выбранный формат запоминается. Язык окошка и сообщений выбирается в окошке: английский (по умолчанию), русский, украинский, казахский, испанский, немецкий, французский, итальянский. Тексты лежат в `_locales/<язык>/messages.json`.
+1. [Download the project as a ZIP](../../archive/refs/heads/main.zip) and unpack it.
+2. Open `chrome://extensions` (in Yandex Browser — `browser://extensions`).
+3. Turn on **Developer mode** in the top right corner.
+4. Click **Load unpacked** and choose the unpacked folder (the one with `manifest.json`).
+5. Pin the extension: click the puzzle icon in the toolbar and pin FanBooks Saver.
 
-### Если AO3 недоступен
+Don't delete or move the folder afterwards — the browser loads the extension from it.
 
-Когда AO3 на техобслуживании или перегружен, расширение ищет сохранённую копию работы:
-сначала на ao3saver.com (копии файла «Download → HTML» AO3, обычно со всеми главами), затем
-в Wayback Machine (archive.org: копии страниц, бывают старые — без новых глав — или только
-с первой главой). Плашка и шапка файла пишут, откуда копия и от какой она даты. Работ
-«только для вошедших» в архивах обычно нет.
+## How to use
 
-## После правок в коде
+1. Open any chapter of a work on a supported site.
+2. Click the **F** icon in the toolbar.
+3. Choose **TXT** or **HTML** and click **Download work**.
 
-- Изменили файлы → на `chrome://extensions` нажать круглую стрелку «Обновить» у FanBooks Saver,
-  затем **перезагрузить вкладку с сайтом** (F5).
-- Ошибки окошка: правой кнопкой по окошку → «Просмотреть код» → вкладка Console.
-- Ошибки фонового скрипта: на `chrome://extensions` у расширения ссылка «service worker».
-- Ошибки на странице сайта: F12 → Console, строки начинаются с `[FanBooks Saver]`.
-- Если на карточке расширения появилась красная кнопка «Ошибки» — там текст ошибки, его удобно
-  скопировать целиком.
+Progress is shown in the corner of the page; the file goes to your usual Downloads folder.
+You can also paste a link to a work into the extension window, or right-click a link →
+**Download work from link**.
 
-## Что расширение не делает
+## Privacy
 
-- Не обходит ограничения сайта. Если сайт не показывает текст (нужен вход, работа закрыта,
-  глава платная), расширение так и пишет и ничего не скачивает.
-- Не скачивает комментарии, серии, закладки и подборки — только саму работу: шапку и главы.
+Everything happens in your browser, with your own login on the site. The extension has no server,
+no analytics and collects no data. See the [privacy policy](store/privacy-policy.html).
 
-## Устройство
+It doesn't bypass site restrictions: if a work is visible only to logged-in users, you need to be
+logged in. Comments, series and bookmarks are not downloaded — only the work itself.
 
-```
-manifest.json            описание расширения для браузера
-popup/                   окошко по нажатию на значок
-src/platforms.js         сайты и распознавание адреса работы
-src/background.js        запуск скачивания во вкладке, меню правой кнопки
-src/content/run.js       во вкладке: сайт → работа → файл
-src/content/sites/*.js   разбор страницы, по файлу на сайт
-src/content/sites/ao3-archives.js  копии работ AO3 из ao3saver и Wayback Machine, когда AO3 лежит
-src/content/output.js    сборка TXT и HTML (стиль как у HTML-выгрузки ридера Read FanBooks)
-src/content/clean.js     чистка текста автора: только оформление текста, без скриптов и стилей сайта
-src/content/overlay.js   плашка прогресса на странице
-```
-
-Каждый разборщик сайта отдаёт работу в одном виде (описан в начале `output.js`), поэтому
-новый сайт — это только новый файл в `src/content/sites/` и `ready: true` в `platforms.js`.
-
-## Лицензия
+## License
 
 © 2026 Iuliia Kuzmina ([@vehgerli](https://github.com/vehgerli)).
-[PolyForm Noncommercial 1.0.0](LICENSE.md): бесплатное некоммерческое использование, изучение
-и переделка разрешены; коммерческое использование — продажа, платные версии, реклама — запрещено.
+
+[PolyForm Noncommercial 1.0.0](LICENSE.md): you may use, study and change the code for free for
+any noncommercial purpose. Commercial use — selling, paid versions, ads — is not allowed.
