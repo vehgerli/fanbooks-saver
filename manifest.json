@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "FanBooks Saver",
+  "version": "0.1.0",
+  "description": "Сохраняет работу с открытой страницы в TXT или HTML: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me, Wattpad.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "FanBooks Saver",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "permissions": ["scripting", "storage", "contextMenus"],
+  "host_permissions": [
+    "https://archiveofourown.org/*",
+    "https://*.archiveofourown.org/*",
+    "https://ao3.org/*",
+    "https://ficbook.net/*",
+    "https://fanfiction.net/*",
+    "https://*.fanfiction.net/*",
+    "https://fanfics.me/*",
+    "https://wattpad.com/*",
+    "https://*.wattpad.com/*"
+  ]
+}

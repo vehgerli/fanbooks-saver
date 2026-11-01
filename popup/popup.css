@@ -1,0 +1,135 @@
+:root {
+  --paper: #fffaf2;
+  --ink: #2a2a2a;
+  --muted: #6b5d4b;
+  --line: #e2d3bd;
+  --accent: #900;
+  --accent-dark: #700;
+  --error: #8a1c1c;
+}
+
+body {
+  width: 320px;
+  margin: 0;
+  padding: 14px 16px 12px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 14px/1.4 Georgia, 'PT Serif', serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+h1 {
+  margin: 0;
+  font-size: 17px;
+  color: var(--accent);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+h2 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.formats {
+  display: flex;
+  gap: 8px;
+}
+
+.formats label {
+  flex: 1;
+  cursor: pointer;
+}
+
+.formats input {
+  position: absolute;
+  opacity: 0;
+}
+
+.formats span {
+  display: block;
+  padding: 6px 0;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.formats input:checked + span {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.formats input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.status {
+  margin: 0;
+  color: var(--muted);
+}
+
+.status.error {
+  color: var(--error);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input[type='url'] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+}
+
+button {
+  padding: 8px 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+footer {
+  padding-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}

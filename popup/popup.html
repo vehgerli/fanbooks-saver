@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>FanBooks Saver</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <img src="../icons/icon32.png" alt="" width="24" height="24" />
+      <h1>FanBooks Saver</h1>
+    </header>
+
+    <section>
+      <h2>Формат</h2>
+      <div class="formats" role="radiogroup">
+        <label><input type="radio" name="format" value="txt" checked /> <span>TXT</span></label>
+        <label><input type="radio" name="format" value="html" /> <span>HTML</span></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Эта страница</h2>
+      <p id="page-status" class="status"></p>
+      <button id="download-page" type="button" hidden>Скачать работу</button>
+    </section>
+
+    <section>
+      <h2>По ссылке</h2>
+      <form id="link-form">
+        <input id="link" type="url" placeholder="https://archiveofourown.org/works/…" required />
+        <button type="submit">Открыть и скачать</button>
+      </form>
+      <p id="link-status" class="status"></p>
+    </section>
+
+    <footer id="sites"></footer>
+
+    <script src="../src/platforms.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
