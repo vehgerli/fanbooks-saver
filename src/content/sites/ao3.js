@@ -104,6 +104,10 @@
       throw new SiteError('Работа доступна только после входа на AO3.');
     }
     if (response.status === 429) throw new SiteError('AO3 просит подождать: слишком много запросов. Попробуйте через пару минут.');
+    // На время техработ AO3 отвечает 418, при перегрузке — 502/503.
+    if ([418, 502, 503].includes(response.status)) {
+      throw new SiteError('AO3 сейчас на техобслуживании или перегружен. Попробуйте позже — статус: status.archiveofourown.org.');
+    }
     if (response.status === 404) throw new SiteError('Работа не найдена: возможно, её удалили или скрыли.');
     if (!response.ok) throw new SiteError(`AO3 ответил ошибкой ${response.status}.`);
     onStage('Разбираю страницу…');
