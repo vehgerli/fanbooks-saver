@@ -50,7 +50,7 @@ You can also paste a link to a work into the extension window, or right-click a 
 ## Privacy
 
 Everything happens in your browser, with your own login on the site. The extension has no server,
-no analytics and collects no data. See the [privacy policy](docs/privacy-policy.html).
+no analytics and collects no data. See the [privacy policy](https://vehgerli.github.io/fanbooks-saver/privacy-policy.html).
 
 It doesn't bypass site restrictions: if a work is visible only to logged-in users, you need to be
 logged in. Comments, series and bookmarks are not downloaded — only the work itself.
