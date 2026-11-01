@@ -23,7 +23,8 @@
       const file = output.build(work, format);
       output.save(file);
       const chapters = work.chapters.length;
-      overlay.done('Файл сохранён в «Загрузки».', `${file.name} · глав: ${chapters}`);
+      const saved = work.copy ? `Файл сохранён в «Загрузки». AO3 недоступен — это ${work.copy}.` : 'Файл сохранён в «Загрузки».';
+      overlay.done(saved, `${file.name} · глав: ${chapters}`);
     } catch (error) {
       const known = error instanceof site.SiteError;
       overlay.error(known ? error.message : 'Не получилось скачать работу.', known ? platform.name : String(error));

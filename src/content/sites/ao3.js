@@ -99,15 +99,25 @@
     const url = `${origin}/works/${workId}`;
     onStage('Загружаю работу целиком…');
     // view_adult=true — та же ссылка, что кнопка «Proceed» в предупреждении о взрослом содержании.
-    const response = await fetch(`${url}?view_full_work=true&view_adult=true`, { credentials: 'include' });
+    let response;
+    try {
+      response = await fetch(`${url}?view_full_work=true&view_adult=true`, { credentials: 'include' });
+    } catch {
+      response = null;
+    }
+    // На время техработ AO3 отвечает 418, при перегрузке — 502/503: тогда ищем сохранённую копию.
+    if (!response || [418, 502, 503].includes(response.status)) {
+      const copy = await FBS.ao3Archives.fetchCopy(workId, { parse, onStage });
+      if (copy) return copy;
+      throw new SiteError(
+        'AO3 сейчас недоступен, а сохранённой копии этой работы не нашлось ни на ao3saver, ни в Wayback Machine. ' +
+          'Попробуйте позже — статус: status.archiveofourown.org.',
+      );
+    }
     if (response.url.includes('/users/login')) {
       throw new SiteError('Работа доступна только после входа на AO3.');
     }
     if (response.status === 429) throw new SiteError('AO3 просит подождать: слишком много запросов. Попробуйте через пару минут.');
-    // На время техработ AO3 отвечает 418, при перегрузке — 502/503.
-    if ([418, 502, 503].includes(response.status)) {
-      throw new SiteError('AO3 сейчас на техобслуживании или перегружен. Попробуйте позже — статус: status.archiveofourown.org.');
-    }
     if (response.status === 404) throw new SiteError('Работа не найдена: возможно, её удалили или скрыли.');
     if (!response.ok) throw new SiteError(`AO3 ответил ошибкой ${response.status}.`);
     onStage('Разбираю страницу…');

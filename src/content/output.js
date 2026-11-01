@@ -1,7 +1,7 @@
 // Сборка файла из работы, одинаковая для всех сайтов.
 //
 // Работа (её отдаёт разборщик сайта):
-//   { site, url, title, authors: [строка], meta: [{ label, value }],
+//   { site, url, title, authors: [строка], meta: [{ label, value }], copy?: «копия с …», если взята из архива,
 //     preface: [Раздел], chapters: [{ title, preface: [Раздел], body: Element, endNotes: [Раздел] }],
 //     endNotes: [Раздел] }
 //   Раздел: { heading, el, lines? } — подпись («Summary:», «Notes:») и элемент с текстом автора.

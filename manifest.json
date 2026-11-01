@@ -30,6 +30,9 @@
     "https://*.fanfiction.net/*",
     "https://fanfics.me/*",
     "https://wattpad.com/*",
-    "https://*.wattpad.com/*"
+    "https://*.wattpad.com/*",
+    "https://ao3saver.com/*",
+    "https://archive.org/*",
+    "https://web.archive.org/*"
   ]
 }

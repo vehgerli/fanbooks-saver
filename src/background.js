@@ -7,6 +7,7 @@ const CONTENT_FILES = [
   'src/content/overlay.js',
   'src/content/clean.js',
   'src/content/output.js',
+  'src/content/sites/ao3-archives.js',
   'src/content/sites/ao3.js',
   'src/content/sites/ficbook.js',
   'src/content/sites/ffn.js',
@@ -58,7 +59,27 @@ async function startFromUrl(url, format) {
   await startInTab(tab.id, format);
 }
 
+// Архивы, откуда берём копии, когда сам сайт лежит. Со страницы сайта браузер их читать
+// не даёт (чужой адрес), а фоновому скрипту можно — адреса есть в host_permissions.
+const ARCHIVE_HOSTS = ['ao3saver.com', 'archive.org', 'web.archive.org'];
+
+async function fetchArchive(href) {
+  const url = new URL(href);
+  if (url.protocol !== 'https:' || !ARCHIVE_HOSTS.includes(url.hostname)) {
+    throw new Error('Адрес не из списка архивов');
+  }
+  const response = await fetch(url.href);
+  return { status: response.status, url: response.url, text: response.ok ? await response.text() : '' };
+}
+
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+  if (message.type === 'fetch-archive') {
+    fetchArchive(message.url).then(
+      (result) => sendResponse({ ok: true, ...result }),
+      (error) => sendResponse({ ok: false, error: String(error?.message ?? error) }),
+    );
+    return true;
+  }
   const run =
     message.type === 'download-tab'
       ? startInTab(message.tabId, message.format)
