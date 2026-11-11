@@ -12,9 +12,8 @@
 - [Archive of Our Own (AO3)](https://archiveofourown.org)
 - [Книга Фанфиков](https://ficbook.net)
 - [FanFiction.net](https://www.fanfiction.net)
+- [Fanfics.me](https://fanfics.me)
 - [Wattpad](https://www.wattpad.com)
-
-Fanfics.me появится позже.
 
 ## Возможности
 

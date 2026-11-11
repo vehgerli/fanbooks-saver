@@ -63,7 +63,7 @@
       id: 'fanficsme',
       name: 'Fanfics.me',
       hosts: ['fanfics.me'],
-      ready: false,
+      ready: true,
       workId: (url) =>
         url.pathname.match(/^\/fic(\d+)/)?.[1] ??
         (url.pathname === '/read.php' ? url.searchParams.get('id') : null),

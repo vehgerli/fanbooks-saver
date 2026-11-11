@@ -12,9 +12,8 @@ to read offline, on an e-reader, or just to keep.
 - [Archive of Our Own (AO3)](https://archiveofourown.org)
 - [Ficbook](https://ficbook.net)
 - [FanFiction.net](https://www.fanfiction.net)
+- [Fanfics.me](https://fanfics.me)
 - [Wattpad](https://www.wattpad.com)
-
-Fanfics.me is coming later.
 
 ## Features
 

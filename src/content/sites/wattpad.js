@@ -104,7 +104,9 @@
       site: 'Wattpad',
       url: story.url || `${location.origin}/story/${storyId}`,
       title: story.title,
-      authors: [story.user?.name || story.user?.username].filter(Boolean),
+      // Логин, как его показывает сам сайт. user.name у работы бывает устаревшим: автор сменил
+      // или стёр имя в профиле, а в работе осталось старое (было «ren !!» вместо justrenwilldo).
+      authors: [story.user?.username || story.user?.name].filter(Boolean),
       meta: readMeta(story),
       preface: description ? [{ heading: 'Summary:', el: textBlock(description), lines: true }] : [],
       chapters,
