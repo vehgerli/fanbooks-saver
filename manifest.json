@@ -33,6 +33,8 @@
     "https://ficbook.net/*",
     "https://fanfiction.net/*",
     "https://*.fanfiction.net/*",
+    "https://wattpad.com/*",
+    "https://*.wattpad.com/*",
     "https://ao3saver.com/*",
     "https://archive.org/*",
     "https://web.archive.org/*"

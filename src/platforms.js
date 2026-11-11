@@ -72,7 +72,7 @@
       id: 'wattpad',
       name: 'Wattpad',
       hosts: ['wattpad.com'],
-      ready: false,
+      ready: true,
       workId: (url) =>
         url.pathname.match(/^\/story\/(\d+)/)?.[1] ?? url.pathname.match(/^\/(\d+)-/)?.[1] ?? null,
     },

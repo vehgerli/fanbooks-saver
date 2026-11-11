@@ -11,6 +11,7 @@ const CONTENT_FILES = [
   'src/content/sites/ao3.js',
   'src/content/sites/ficbook.js',
   'src/content/sites/ffn.js',
+  'src/content/sites/wattpad.js',
   'src/content/run.js',
 ];
 

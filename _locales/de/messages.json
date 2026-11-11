@@ -1,6 +1,6 @@
 {
   "extDescription": {
-    "message": "Speichert eine Fanfiction von der geöffneten Seite als TXT oder HTML: AO3, Ficbook und FanFiction.net."
+    "message": "Speichert eine Fanfiction von der geöffneten Seite als TXT oder HTML: AO3, Ficbook, FanFiction.net und Wattpad."
   },
   "siteFicbook": {
     "message": "Ficbook"
