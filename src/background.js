@@ -20,6 +20,9 @@ async function savedFormat() {
 }
 
 async function startInTab(tabId, format) {
+  // Убираем «!» от прошлой неудачной попытки (см. reportError).
+  chrome.action.setBadgeText({ tabId, text: '' }).catch(() => {});
+  chrome.action.setTitle({ tabId, title: 'FanBooks Saver' }).catch(() => {});
   await chrome.scripting.executeScript({ target: { tabId }, files: CONTENT_FILES });
   // Не ждём окончания: скачивание идёт во вкладке и показывает свой прогресс там же.
   await chrome.scripting.executeScript({
@@ -55,8 +58,28 @@ function waitForTabLoaded(tabId) {
 /** По ссылке: открываем работу в новой вкладке и скачиваем оттуда. */
 async function startFromUrl(url, format) {
   const tab = await chrome.tabs.create({ url, active: true });
-  await waitForTabLoaded(tab.id);
-  await startInTab(tab.id, format);
+  try {
+    await waitForTabLoaded(tab.id);
+    await startInTab(tab.id, format);
+  } catch (error) {
+    error.tabId = tab.id; // Чтобы показать ошибку на значке именно этой вкладки.
+    throw error;
+  }
+}
+
+/**
+ * Скачивание из меню не стартовало (например, скрипт не внедрился) — плашки во вкладке нет,
+ * поэтому показываем «!» на значке расширения и текст ошибки в подсказке к нему.
+ * Значок вкладки сбрасывается сам, когда она переходит на другую страницу.
+ */
+function reportError(error, tabId) {
+  console.error('[FanBooks Saver]', error);
+  if (tabId == null) return;
+  const message = String(error?.message ?? error);
+  const ignore = () => {}; // Вкладку могли уже закрыть.
+  chrome.action.setBadgeBackgroundColor({ tabId, color: '#900' }).catch(ignore);
+  chrome.action.setBadgeText({ tabId, text: '!' }).catch(ignore);
+  chrome.action.setTitle({ tabId, title: `FanBooks Saver: ${message}` }).catch(ignore);
 }
 
 // Архивы, откуда берём копии, когда сам сайт лежит. Со страницы сайта браузер их читать
@@ -120,6 +143,10 @@ chrome.storage.onChanged.addListener((changes) => {
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   const format = await savedFormat();
-  if (info.menuItemId === 'fbs-link' && info.linkUrl) startFromUrl(info.linkUrl, format);
-  if (info.menuItemId === 'fbs-page' && tab?.id != null) startInTab(tab.id, format);
+  if (info.menuItemId === 'fbs-link' && info.linkUrl) {
+    startFromUrl(info.linkUrl, format).catch((error) => reportError(error, error?.tabId));
+  }
+  if (info.menuItemId === 'fbs-page' && tab?.id != null) {
+    startInTab(tab.id, format).catch((error) => reportError(error, tab.id));
+  }
 });

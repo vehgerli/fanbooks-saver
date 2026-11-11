@@ -96,9 +96,11 @@
     return { platform, workId: platform.workId(url) };
   }
 
-  /** Шаблоны адресов для меню правой кнопки. */
+  /** Шаблоны адресов для меню правой кнопки: только готовые сайты — к остальным нет доступа. */
   function urlPatterns() {
-    return PLATFORMS.flatMap((p) => p.hosts.flatMap((h) => [`https://${h}/*`, `https://*.${h}/*`]));
+    return PLATFORMS.filter((p) => p.ready).flatMap((p) =>
+      p.hosts.flatMap((h) => [`https://${h}/*`, `https://*.${h}/*`]),
+    );
   }
 
   FBS.platforms = { list: PLATFORMS, detect, urlPatterns };
