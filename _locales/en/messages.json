@@ -158,6 +158,12 @@
   "errLogin": {
     "message": "This work is only available after logging in to $1."
   },
+  "stageRetry": {
+    "message": "The site didn’t respond — retrying in $1 s"
+  },
+  "errNetwork": {
+    "message": "Couldn’t reach the site. Check your internet connection and try again."
+  },
   "errRateLimited": {
     "message": "The site has temporarily limited access. Try again in a few minutes."
   },

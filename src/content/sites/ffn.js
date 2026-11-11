@@ -1,40 +1,24 @@
 // FanFiction.net: шапка — на странице первой главы, каждая глава — отдельной страницей.
 // Сайт стоит за Cloudflare и не любит частые запросы, поэтому главы грузим по одной с паузой,
-// а при ограничении (ответ 429) ждём и повторяем.
+// а при ограничении (ответ 429) ждём и повторяем (см. net.js).
 (function () {
   const FBS = (globalThis.FBS = globalThis.FBS || {});
   FBS.sites = FBS.sites || {};
   if (FBS.sites.ffn) return;
   const { line } = FBS.clean;
   const { t } = FBS;
-
-  class SiteError extends Error {}
+  const { fetchRetry, SiteError, sleep } = FBS.net;
 
   const PAUSE_MS = 1500;
-  const RETRY_WAITS_S = [20, 40, 60];
   // Поля строки статистики, которые в файле не нужны.
   const SKIP_LABELS = new Set(['id', 'Reviews']);
 
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   async function load(path, onStage, stage) {
-    for (let attempt = 0; ; attempt++) {
-      onStage(stage);
-      const response = await fetch(path, { credentials: 'include' });
-      if (response.status === 429 && attempt < RETRY_WAITS_S.length) {
-        for (let left = RETRY_WAITS_S[attempt]; left > 0; left--) {
-          onStage(stage, t('stageWait', left));
-          await sleep(1000);
-        }
-        continue;
-      }
-      if (response.status === 429) throw new SiteError(t('errRateLimited'));
-      if (response.status === 403) {
-        throw new SiteError(t('errCloudflare'));
-      }
-      if (!response.ok) throw new SiteError(t('errSiteStatus', 'FanFiction.net', response.status));
-      return new DOMParser().parseFromString(await response.text(), 'text/html');
-    }
+    const response = await fetchRetry(path, { onStage, stage });
+    if (response.status === 429) throw new SiteError(t('errRateLimited'));
+    if (response.status === 403) throw new SiteError(t('errCloudflare'));
+    if (!response.ok) throw new SiteError(t('errSiteStatus', 'FanFiction.net', response.status));
+    return new DOMParser().parseFromString(response.text, 'text/html');
   }
 
   /**

@@ -158,6 +158,12 @@
   "errLogin": {
     "message": "Dieses Werk ist nur nach Anmeldung bei $1 verfügbar."
   },
+  "stageRetry": {
+    "message": "Die Seite hat nicht geantwortet — neuer Versuch in $1 s"
+  },
+  "errNetwork": {
+    "message": "Die Seite ist nicht erreichbar. Prüfe deine Internetverbindung und versuche es erneut."
+  },
   "errRateLimited": {
     "message": "Die Seite hat den Zugriff vorübergehend eingeschränkt. Versuche es in ein paar Minuten."
   },

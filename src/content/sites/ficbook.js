@@ -1,42 +1,28 @@
 // Книга Фанфиков: шапка — на странице работы, текст — на странице каждой части.
 // Сайт быстро ограничивает частые запросы (ответ 429), поэтому части грузим по одной с паузой,
-// а при ограничении ждём и повторяем.
+// а при ограничении ждём и повторяем (см. net.js).
 (function () {
   const FBS = (globalThis.FBS = globalThis.FBS || {});
   FBS.sites = FBS.sites || {};
   if (FBS.sites.ficbook) return;
   const { line } = FBS.clean;
   const { t } = FBS;
-
-  class SiteError extends Error {}
+  const { fetchRetry, SiteError, sleep } = FBS.net;
 
   const PAUSE_MS = 1500;
-  const RETRY_WAITS_S = [20, 40, 60];
   // Эти поля шапки — текст автора, они идут отдельными разделами, а не строкой в шапке.
   const SECTION_LABELS = new Set(['Описание:', 'Примечания:', 'Посвящение:']);
   const AUTHOR_ROLES = /^(автор|соавтор)/i;
 
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   async function load(path, onStage, stage) {
-    for (let attempt = 0; ; attempt++) {
-      onStage(stage);
-      const response = await fetch(path, { credentials: 'include' });
-      if (response.url.includes('/login')) {
-        throw new SiteError(t('errLogin', t('siteFicbook')));
-      }
-      if (response.status === 429 && attempt < RETRY_WAITS_S.length) {
-        for (let left = RETRY_WAITS_S[attempt]; left > 0; left--) {
-          onStage(stage, t('stageWait', left));
-          await sleep(1000);
-        }
-        continue;
-      }
-      if (response.status === 429) throw new SiteError(t('errRateLimited'));
-      if (response.status === 404) throw new SiteError(t('errNotFound'));
-      if (!response.ok) throw new SiteError(t('errSiteStatus', t('siteFicbook'), response.status));
-      return new DOMParser().parseFromString(await response.text(), 'text/html');
+    const response = await fetchRetry(path, { onStage, stage });
+    if (response.url.includes('/login')) {
+      throw new SiteError(t('errLogin', t('siteFicbook')));
     }
+    if (response.status === 429) throw new SiteError(t('errRateLimited'));
+    if (response.status === 404) throw new SiteError(t('errNotFound'));
+    if (!response.ok) throw new SiteError(t('errSiteStatus', t('siteFicbook'), response.status));
+    return new DOMParser().parseFromString(response.text, 'text/html');
   }
 
   /** Значение поля шапки: метки и пейринги через запятую, остальное — текстом как на сайте. */

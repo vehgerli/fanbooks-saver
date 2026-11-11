@@ -158,6 +158,12 @@
   "errLogin": {
     "message": "Esta obra solo está disponible tras iniciar sesión en $1."
   },
+  "stageRetry": {
+    "message": "El sitio no respondió — reintento en $1 s"
+  },
+  "errNetwork": {
+    "message": "No se pudo conectar con el sitio. Revisa tu conexión a internet e inténtalo de nuevo."
+  },
   "errRateLimited": {
     "message": "El sitio ha limitado el acceso temporalmente. Inténtalo en unos minutos."
   },

@@ -8,38 +8,34 @@
   FBS.sites = FBS.sites || {};
   if (FBS.sites.wattpad) return;
   const { t } = FBS;
-
-  class SiteError extends Error {}
+  const { fetchRetry, SiteError, sleep } = FBS.net;
 
   const PAUSE_MS = 500;
-  const RETRY_WAITS_S = [20, 40, 60];
   const STORY_FIELDS =
     'id,title,url,description,completed,mature,tags,numParts,language(name),user(name,username),' +
     'parts(id,title,pages,draft,deleted)';
 
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  function parseJson(text) {
+    try {
+      return JSON.parse(text);
+    } catch {
+      return null;
+    }
+  }
 
   async function load(path, onStage, stage, { json = false } = {}) {
-    for (let attempt = 0; ; attempt++) {
-      onStage(stage);
-      const response = await fetch(path, { credentials: 'include' });
-      if (response.status === 429 && attempt < RETRY_WAITS_S.length) {
-        for (let left = RETRY_WAITS_S[attempt]; left > 0; left--) {
-          onStage(stage, t('stageWait', left));
-          await sleep(1000);
-        }
-        continue;
-      }
-      if (response.status === 429) throw new SiteError(t('errRateLimited'));
-      if (response.status === 404) throw new SiteError(t('errNotFound'));
-      if (!response.ok) {
-        // Удалённая или скрытая работа (глава): API отвечает 400 и error_type «NotFound».
-        const body = await response.json().catch(() => null);
-        if (body?.error_type === 'NotFound') throw new SiteError(t('errNotFound'));
-        throw new SiteError(t('errSiteStatus', 'Wattpad', response.status));
-      }
-      return json ? response.json() : response.text();
+    const response = await fetchRetry(path, { onStage, stage });
+    if (response.status === 429) throw new SiteError(t('errRateLimited'));
+    if (response.status === 404) throw new SiteError(t('errNotFound'));
+    if (!response.ok) {
+      // Удалённая или скрытая работа (глава): API отвечает 400 и error_type «NotFound».
+      if (parseJson(response.text)?.error_type === 'NotFound') throw new SiteError(t('errNotFound'));
+      throw new SiteError(t('errSiteStatus', 'Wattpad', response.status));
     }
+    if (!json) return response.text;
+    const data = parseJson(response.text);
+    if (!data) throw new SiteError(t('errLayout'));
+    return data;
   }
 
   /** Текст главы: склеиваем все её страницы в один элемент. */

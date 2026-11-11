@@ -6,32 +6,18 @@
   if (FBS.sites.fanficsme) return;
   const { line } = FBS.clean;
   const { t } = FBS;
+  const { fetchRetry, SiteError } = FBS.net;
 
-  class SiteError extends Error {}
-
-  const RETRY_WAITS_S = [20, 40, 60];
   // Эти поля шапки — текст автора, они идут отдельными разделами, а не строкой в шапке.
   const SECTION_LABELS = new Set(['От автора:']);
   const AUTHOR_LABELS = new Set(['Автор:', 'Авторы:', 'Соавтор:', 'Соавторы:']);
 
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   async function load(path, onStage, stage) {
-    for (let attempt = 0; ; attempt++) {
-      onStage(stage);
-      const response = await fetch(path, { credentials: 'include' });
-      if (response.status === 429 && attempt < RETRY_WAITS_S.length) {
-        for (let left = RETRY_WAITS_S[attempt]; left > 0; left--) {
-          onStage(stage, t('stageWait', left));
-          await sleep(1000);
-        }
-        continue;
-      }
-      if (response.status === 429) throw new SiteError(t('errRateLimited'));
-      if (response.status === 404) throw new SiteError(t('errNotFound'));
-      if (!response.ok) throw new SiteError(t('errSiteStatus', 'Fanfics.me', response.status));
-      return new DOMParser().parseFromString(await response.text(), 'text/html');
-    }
+    const response = await fetchRetry(path, { onStage, stage });
+    if (response.status === 429) throw new SiteError(t('errRateLimited'));
+    if (response.status === 404) throw new SiteError(t('errNotFound'));
+    if (!response.ok) throw new SiteError(t('errSiteStatus', 'Fanfics.me', response.status));
+    return new DOMParser().parseFromString(response.text, 'text/html');
   }
 
   /** Значение строки шапки: ссылки через запятую, иначе текст. */

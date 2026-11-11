@@ -5,8 +5,7 @@
   if (FBS.sites.ao3) return;
   const { line } = FBS.clean;
   const { t } = FBS;
-
-  class SiteError extends Error {}
+  const { fetchRetry, SiteError } = FBS.net;
 
   /** Значение поля шапки: теги через запятую, статистика парами «подпись значение». */
   function metaValue(dd) {
@@ -98,11 +97,14 @@
   async function fetchWork(workId, onStage) {
     const origin = location.origin;
     const url = `${origin}/works/${workId}`;
-    onStage(t('stageAo3Full'));
     // view_adult=true — та же ссылка, что кнопка «Proceed» в предупреждении о взрослом содержании.
+    // При 429 подождём, при обрыве и 5xx повторим (net.js); не помогло — ищем копию в архивах.
     let response;
     try {
-      response = await fetch(`${url}?view_full_work=true&view_adult=true`, { credentials: 'include' });
+      response = await fetchRetry(`${url}?view_full_work=true&view_adult=true`, {
+        onStage,
+        stage: t('stageAo3Full'),
+      });
     } catch {
       response = null;
     }
@@ -119,7 +121,7 @@
     if (response.status === 404) throw new SiteError(t('errNotFound'));
     if (!response.ok) throw new SiteError(t('errSiteStatus', 'AO3', response.status));
     onStage(t('stageParsing'));
-    const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+    const doc = new DOMParser().parseFromString(response.text, 'text/html');
     return parse(doc, url);
   }
 

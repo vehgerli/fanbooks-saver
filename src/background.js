@@ -9,6 +9,7 @@ const CONTENT_FILES = [
   'src/content/clean.js',
   'src/content/epub.js',
   'src/content/output.js',
+  'src/content/net.js',
   'src/content/sites/ao3-archives.js',
   'src/content/sites/ao3.js',
   'src/content/sites/ficbook.js',

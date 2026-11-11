@@ -158,6 +158,12 @@
   "errLogin": {
     "message": "Cette œuvre n’est disponible qu’après connexion à $1."
   },
+  "stageRetry": {
+    "message": "Le site n’a pas répondu — nouvel essai dans $1 s"
+  },
+  "errNetwork": {
+    "message": "Impossible de joindre le site. Vérifiez votre connexion internet et réessayez."
+  },
   "errRateLimited": {
     "message": "Le site a temporairement limité l’accès. Réessayez dans quelques minutes."
   },
