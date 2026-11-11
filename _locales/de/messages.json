@@ -1,6 +1,6 @@
 {
   "extDescription": {
-    "message": "Speichert eine Fanfiction von der geöffneten Seite als TXT oder HTML: AO3, Ficbook, FanFiction.net, Fanfics.me und Wattpad."
+    "message": "Speichert eine Fanfiction von der geöffneten Seite als TXT, HTML oder EPUB: AO3, Ficbook, FanFiction.net, Fanfics.me und Wattpad."
   },
   "siteFicbook": {
     "message": "Ficbook"
@@ -67,6 +67,12 @@
   },
   "image": {
     "message": "Bild"
+  },
+  "epubChapter": {
+    "message": "Kapitel $1"
+  },
+  "epubNotes": {
+    "message": "Anmerkungen"
   },
   "runBusy": {
     "message": "Das Werk wird bereits heruntergeladen…"

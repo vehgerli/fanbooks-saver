@@ -18,6 +18,9 @@
   ];
   let messages = null;
 
+  // Форматы файла; первый — по умолчанию. Выбор в окошке хранится в storage («format»).
+  FBS.formats = ['txt', 'html', 'epub'];
+
   /** Строка на выбранном языке; подстановки $1, $2… */
   FBS.t = (key, ...subs) => {
     const message = messages?.[key]?.message;

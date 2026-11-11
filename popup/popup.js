@@ -1,5 +1,5 @@
 // Окошко расширения: выбор формата, скачивание с текущей вкладки или по ссылке.
-const { platforms, t, languages, loadLanguage } = globalThis.FBS;
+const { platforms, t, languages, loadLanguage, formats } = globalThis.FBS;
 
 /** Язык окошка: подписи из выбранного языка и список языков в шапке. */
 async function applyLanguage() {
@@ -35,7 +35,7 @@ function currentFormat() {
 
 async function loadFormat() {
   const { format } = await chrome.storage.local.get('format');
-  const input = document.querySelector(`input[name="format"][value="${format === 'html' ? 'html' : 'txt'}"]`);
+  const input = document.querySelector(`input[name="format"][value="${formats.includes(format) ? format : 'txt'}"]`);
   input.checked = true;
 }
 

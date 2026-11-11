@@ -2,7 +2,7 @@
 
 **English** · [Русский](README.ru.md)
 
-A browser extension that saves a fanfic from the page you have open as a **TXT** or **HTML** file —
+A browser extension that saves a fanfic from the page you have open as a **TXT**, **HTML** or **EPUB** file —
 to read offline, on an e-reader, or just to keep.
 
 ![FanBooks Saver](docs/screenshot.png)
@@ -41,7 +41,7 @@ Don't delete or move the folder afterwards — the browser loads the extension f
 
 1. Open any chapter of a work on a supported site.
 2. Click the **F** icon in the toolbar.
-3. Choose **TXT** or **HTML** and click **Download work**.
+3. Choose **TXT**, **HTML** or **EPUB** and click **Download work**.
 
 Progress is shown in the corner of the page; the file goes to your usual Downloads folder.
 You can also paste a link to a work into the extension window, or right-click a link →

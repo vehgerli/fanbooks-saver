@@ -1,6 +1,6 @@
 {
   "extDescription": {
-    "message": "Guarda un fanfic de la página abierta en TXT o HTML: AO3, Ficbook, FanFiction.net, Fanfics.me y Wattpad."
+    "message": "Guarda un fanfic de la página abierta en TXT, HTML o EPUB: AO3, Ficbook, FanFiction.net, Fanfics.me y Wattpad."
   },
   "siteFicbook": {
     "message": "Ficbook"
@@ -67,6 +67,12 @@
   },
   "image": {
     "message": "Imagen"
+  },
+  "epubChapter": {
+    "message": "Capítulo $1"
+  },
+  "epubNotes": {
+    "message": "Notas"
   },
   "runBusy": {
     "message": "La obra ya se está descargando…"

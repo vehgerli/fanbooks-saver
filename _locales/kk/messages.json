@@ -1,6 +1,6 @@
 {
   "extDescription": {
-    "message": "Ашық беттегі шығарманы TXT немесе HTML пішімінде сақтайды: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me және Wattpad."
+    "message": "Ашық беттегі шығарманы TXT, HTML немесе EPUB пішімінде сақтайды: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me және Wattpad."
   },
   "siteFicbook": {
     "message": "Книга Фанфиков"
@@ -67,6 +67,12 @@
   },
   "image": {
     "message": "Сурет"
+  },
+  "epubChapter": {
+    "message": "$1-тарау"
+  },
+  "epubNotes": {
+    "message": "Ескертпелер"
   },
   "runBusy": {
     "message": "Шығарма жүктеліп жатыр…"

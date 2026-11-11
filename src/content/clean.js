@@ -32,17 +32,30 @@
     }
   }
 
-  /** Копия узла только с разрешёнными тегами и атрибутами. */
-  function cleanNode(node, doc, base) {
-    if (node.nodeType === Node.TEXT_NODE) return doc.createTextNode(node.data);
+  /**
+   * Копия узла только с разрешёнными тегами и атрибутами.
+   * opts.lines — переносы строк в тексте становятся <br> (для EPUB: не все ридеры понимают pre-wrap);
+   * opts.images === false — картинки заменяются подписью, как в TXT (ридер без сети их не покажет).
+   */
+  function cleanNode(node, doc, base, opts = {}) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      if (!opts.lines || opts.pre || !node.data.includes('\n')) return doc.createTextNode(node.data);
+      const fragment = doc.createDocumentFragment();
+      node.data.split(/\r?\n/).forEach((part, index) => {
+        if (index) fragment.appendChild(doc.createElement('br'));
+        if (part) fragment.appendChild(doc.createTextNode(part));
+      });
+      return fragment;
+    }
     if (node.nodeType !== Node.ELEMENT_NODE) return null;
     const tag = node.localName;
     if (DROP.has(tag)) return null;
 
     const children = () => {
       const fragment = doc.createDocumentFragment();
+      const childOpts = tag === 'pre' ? { ...opts, pre: true } : opts;
       for (const child of node.childNodes) {
-        const copy = cleanNode(child, doc, base);
+        const copy = cleanNode(child, doc, base, childOpts);
         if (copy) fragment.appendChild(copy);
       }
       return fragment;
@@ -66,6 +79,7 @@
       const href = absolute(node.getAttribute('href') || '', base);
       if (href) el.setAttribute('href', href);
     } else if (tag === 'img') {
+      if (opts.images === false) return doc.createTextNode(imageLabel(node));
       const src = absolute(node.getAttribute('src') || '', base);
       if (!src) return null;
       el.setAttribute('src', src);
@@ -81,6 +95,11 @@
     return el;
   }
 
+  function imageLabel(img) {
+    const alt = (img.getAttribute('alt') || '').trim();
+    return alt ? `[${FBS.t('image')}: ${alt}]` : `[${FBS.t('image')}]`;
+  }
+
   /** Чистый HTML содержимого элемента (без самого элемента). */
   function toHtml(root, base) {
     const doc = document.implementation.createHTMLDocument('');
@@ -90,6 +109,21 @@
       if (copy) box.appendChild(copy);
     }
     return box.innerHTML.trim();
+  }
+
+  /** То же для EPUB: XHTML-строка <div xmlns="…">…</div>, картинки — подписью. */
+  function toXhtml(root, base, { lines = false } = {}) {
+    const doc = document.implementation.createHTMLDocument('');
+    const box = doc.createElement('div');
+    for (const child of root.childNodes) {
+      const copy = cleanNode(child, doc, base, { lines, images: false });
+      if (copy) box.appendChild(copy);
+    }
+    // Переносы в начале и в конце текста дали бы пустые строки.
+    const blank = (n) => n && (n.localName === 'br' || (n.nodeType === Node.TEXT_NODE && !n.data.trim()));
+    while (blank(box.firstChild)) box.firstChild.remove();
+    while (blank(box.lastChild)) box.lastChild.remove();
+    return new XMLSerializer().serializeToString(box);
   }
 
   /**
@@ -110,8 +144,7 @@
       if (tag === 'br') return void out.push('\n');
       if (tag === 'hr') return void out.push('\n\n* * *\n\n');
       if (tag === 'img') {
-        const alt = (node.getAttribute('alt') || '').trim();
-        return void out.push(alt ? `[${FBS.t('image')}: ${alt}]` : `[${FBS.t('image')}]`);
+        return void out.push(imageLabel(node));
       }
       const block = BLOCK.has(tag);
       if (block) breakBlock();
@@ -135,5 +168,5 @@
     return (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
   }
 
-  FBS.clean = { toHtml, toText, line };
+  FBS.clean = { toHtml, toXhtml, toText, line };
 })();

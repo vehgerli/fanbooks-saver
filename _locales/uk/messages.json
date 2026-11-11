@@ -1,6 +1,6 @@
 {
   "extDescription": {
-    "message": "Зберігає роботу з відкритої сторінки у TXT або HTML: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me і Wattpad."
+    "message": "Зберігає роботу з відкритої сторінки у TXT, HTML або EPUB: AO3, Книга Фанфиков, FanFiction.net, Fanfics.me і Wattpad."
   },
   "siteFicbook": {
     "message": "Книга Фанфиков"
@@ -67,6 +67,12 @@
   },
   "image": {
     "message": "Зображення"
+  },
+  "epubChapter": {
+    "message": "Розділ $1"
+  },
+  "epubNotes": {
+    "message": "Примітки"
   },
   "runBusy": {
     "message": "Робота вже завантажується…"

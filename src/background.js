@@ -6,6 +6,7 @@ const CONTENT_FILES = [
   'src/platforms.js',
   'src/content/overlay.js',
   'src/content/clean.js',
+  'src/content/epub.js',
   'src/content/output.js',
   'src/content/sites/ao3-archives.js',
   'src/content/sites/ao3.js',
@@ -18,7 +19,7 @@ const CONTENT_FILES = [
 
 async function savedFormat() {
   const { format } = await chrome.storage.local.get('format');
-  return format === 'html' ? 'html' : 'txt';
+  return FBS.formats.includes(format) ? format : 'txt';
 }
 
 async function startInTab(tabId, format) {

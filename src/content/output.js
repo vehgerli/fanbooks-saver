@@ -116,6 +116,7 @@
   }
 
   function build(work, format) {
+    if (format === 'epub') return { name: fileName(work, format), blob: FBS.epub.build(work) };
     const content = format === 'html' ? html(work) : txt(work);
     const type = format === 'html' ? 'text/html;charset=utf-8' : 'text/plain;charset=utf-8';
     return { name: fileName(work, format), blob: new Blob([content], { type }) };
