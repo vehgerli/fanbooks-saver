@@ -3,40 +3,54 @@
   const FBS = (globalThis.FBS = globalThis.FBS || {});
   FBS.sites = FBS.sites || {};
   if (FBS.sites.ao3) return;
-  const { line } = FBS.clean;
+  const { line, toHtml } = FBS.clean;
   const { t } = FBS;
   const { fetchRetry, SiteError } = FBS.net;
 
-  /** Значение поля шапки: теги через запятую, статистика парами «подпись значение». */
-  function metaValue(dd) {
+  // Из статистики в файл идёт то же, что в выгрузке самого AO3: без комментариев, кудосов и просмотров.
+  const FILE_STATS = new Set(['Published:', 'Updated:', 'Completed:', 'Words:', 'Chapters:']);
+
+  /**
+   * Значение поля шапки: { value } — текстом (теги через запятую, статистика парами «подпись значение»),
+   * html — как в выгрузке AO3: теги ссылками через запятую.
+   */
+  function metaValue(dd, base) {
     const stats = dd.querySelector('dl');
     if (stats) {
-      return [...stats.querySelectorAll('dt')]
+      const value = [...stats.querySelectorAll('dt')]
+        .filter((dt) => FILE_STATS.has(line(dt)))
         .map((dt) => `${line(dt)} ${line(dt.nextElementSibling)}`)
         .join(' ');
+      return { value };
     }
-    const items = dd.querySelectorAll('li');
-    if (items.length) return [...items].map(line).filter(Boolean).join(', ');
-    return line(dd);
+    const items = [...dd.querySelectorAll('li')].filter((li) => line(li));
+    if (items.length) {
+      return { value: items.map(line).join(', '), html: items.map((li) => toHtml(li, base)).join(', ') };
+    }
+    return { value: line(dd), html: toHtml(dd, base) };
   }
 
-  function readMeta(doc) {
+  function readMeta(doc, base) {
     const dl = doc.querySelector('dl.work.meta');
     if (!dl) return [];
     return [...dl.querySelectorAll(':scope > dt')]
-      .map((dt) => ({ label: line(dt), value: metaValue(dt.nextElementSibling) }))
+      .map((dt) => ({ label: line(dt), ...metaValue(dt.nextElementSibling, base) }))
       .filter((m) => m.label && m.value);
   }
 
-  /** Блок «Summary» / «Notes» / «End Notes»: подпись и текст автора. */
-  function readModules(root, selector) {
+  /**
+   * Блоки «Summary» / «Notes» / «End Notes»: подпись и текст автора.
+   * Подписи — как в выгрузке AO3: «Summary», «Notes», «End Notes», у глав — с «Chapter» впереди.
+   */
+  function readModules(root, selector, prefix = '') {
     if (!root) return [];
     return [...root.querySelectorAll(selector)]
       .map((module) => {
         const el = module.querySelector('blockquote.userstuff, .userstuff');
         if (!el) return null;
         el.querySelectorAll('p.jump').forEach((p) => p.remove());
-        return { heading: line(module.querySelector(':scope > h3, :scope > .heading')), el };
+        const kind = module.matches('.summary') ? 'Summary' : module.matches('.end, #work_endnotes') ? 'End Notes' : 'Notes';
+        return { heading: prefix + kind, el };
       })
       .filter((s) => s && s.el.textContent.trim());
   }
@@ -64,9 +78,9 @@
         const head = chapter.querySelector(':scope > .chapter.preface');
         return {
           title: line(head?.querySelector('h3.title')),
-          preface: readModules(head, ':scope > .summary, :scope > .notes'),
+          preface: readModules(head, ':scope > .summary, :scope > .notes:not(.end)', 'Chapter '),
           body,
-          endNotes: readModules(chapter, ':scope > .preface .end.notes, :scope > .end.notes'),
+          endNotes: readModules(chapter, ':scope > .preface .end.notes, :scope > .end.notes', 'Chapter '),
         };
       })
       .filter(Boolean);
@@ -79,16 +93,22 @@
       throw new SiteError(t('errNoText'));
     }
     const byline = doc.querySelector('h3.byline');
-    const authorLinks = byline ? [...byline.querySelectorAll('a[rel="author"]')] : [];
-    const authors = authorLinks.length ? authorLinks.map(line) : byline ? [line(byline)] : [];
+    const links = byline ? [...byline.querySelectorAll('a[rel="author"]')] : [];
+    const authorLinks = links.length
+      ? links.map((a) => ({ name: line(a), url: new URL(a.getAttribute('href'), url).href }))
+      : byline && line(byline)
+        ? [{ name: line(byline) }]
+        : [];
     const preface = doc.querySelector('#workskin > .preface');
     return {
       site: 'AO3',
+      layout: 'ao3',
       url,
       title,
-      authors: authors.filter(Boolean),
-      meta: readMeta(doc),
-      preface: readModules(preface, ':scope > .summary, :scope > .notes'),
+      authors: authorLinks.map((a) => a.name).filter(Boolean),
+      authorLinks,
+      meta: readMeta(doc, url),
+      preface: readModules(preface, ':scope > .summary, :scope > .notes:not(.end)'),
       chapters,
       endNotes: readModules(doc, '#work_endnotes'),
     };

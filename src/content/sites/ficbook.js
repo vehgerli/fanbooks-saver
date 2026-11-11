@@ -49,32 +49,36 @@
     return { meta, preface };
   }
 
-  /** Участники из шапки: авторы — в подпись, беты и гаммы — строками шапки. */
-  function readCreators(doc) {
+  /**
+   * Участники из шапки: авторы — в подпись, беты и гаммы — строками шапки.
+   * creators — все по порядку, с ролью и ссылкой на профиль (для раскладки как у сайта).
+   */
+  function readCreators(doc, base) {
     const authors = [];
     const others = [];
+    const creators = [];
     const links = doc.querySelectorAll('.fanfic-hat a.word-break[href^="/authors/"]');
     for (const link of links.length ? links : doc.querySelectorAll('[itemprop="author"]')) {
       const name = line(link);
-      const role = line(link.closest('.flex-column')?.querySelector('.ds-badge'));
+      const badge = line(link.closest('.flex-column')?.querySelector('.ds-badge'));
       if (!name) continue;
-      if (!role || AUTHOR_ROLES.test(role)) authors.push(name);
-      else others.push({ label: role[0].toUpperCase() + role.slice(1) + ':', value: name });
+      const role = badge ? badge[0].toUpperCase() + badge.slice(1) : 'Автор';
+      const href = link.getAttribute('href');
+      creators.push({ role, name, url: href ? new URL(href, base).href : undefined });
+      if (!badge || AUTHOR_ROLES.test(badge)) authors.push(name);
+      else others.push({ label: role + ':', value: name });
     }
-    return { authors, others };
+    return { authors, others, creators };
   }
 
   function readBadges(doc) {
     const badges = doc.querySelector('.fanfic-badges');
-    if (!badges) return [];
-    const direction = line(badges.querySelector('.direction .hidden-xs') ?? badges.querySelector('.direction'));
-    const rating = line(badges.querySelector('[class*="ds-label-rating"]'));
-    const status = line(badges.querySelector('[class*="ds-label-status"]'));
-    return [
-      { label: 'Направленность:', value: direction },
-      { label: 'Рейтинг:', value: rating },
-      { label: 'Статус:', value: status },
-    ].filter((m) => m.value);
+    if (!badges) return {};
+    return {
+      direction: line(badges.querySelector('.direction .hidden-xs') ?? badges.querySelector('.direction')),
+      rating: line(badges.querySelector('[class*="ds-label-rating"]')),
+      status: line(badges.querySelector('[class*="ds-label-status"]')),
+    };
   }
 
   /** Текст части и её примечания до и после. */
@@ -124,13 +128,22 @@
     if (!chapters.length) throw new SiteError(t('errNoText'));
 
     const { meta, preface } = readHat(doc);
-    const { authors, others } = readCreators(doc);
+    const { authors, others, creators } = readCreators(doc, url);
+    const { direction, rating, status } = readBadges(doc);
+    const badges = [
+      { label: 'Направленность:', value: direction },
+      { label: 'Рейтинг:', value: rating },
+      { label: 'Статус:', value: status },
+    ].filter((m) => m.value);
     return {
       site: t('siteFicbook'),
+      layout: 'ficbook',
+      // Шапка по полям — для раскладки как в выгрузке сайта (layouts.js).
+      hat: { direction, rating, status, creators, fields: meta },
       url,
       title,
       authors,
-      meta: [...readBadges(doc), ...others, ...meta],
+      meta: [...badges, ...others, ...meta],
       preface,
       chapters,
       endNotes: [],

@@ -117,7 +117,9 @@
 
   function build(work, format) {
     if (format === 'epub') return { name: fileName(work, format), blob: FBS.epub.build(work) };
-    const content = format === 'html' ? html(work) : txt(work);
+    // AO3 и Книга Фанфиков — в раскладке самого сайта (layouts.js), остальные — в общей.
+    const layout = FBS.layouts?.[work.layout] ?? { html, txt };
+    const content = format === 'html' ? layout.html(work) : layout.txt(work);
     const type = format === 'html' ? 'text/html;charset=utf-8' : 'text/plain;charset=utf-8';
     return { name: fileName(work, format), blob: new Blob([content], { type }) };
   }
@@ -135,5 +137,5 @@
     setTimeout(() => URL.revokeObjectURL(href), 60000);
   }
 
-  FBS.output = { build, save };
+  FBS.output = { build, save, CSS };
 })();

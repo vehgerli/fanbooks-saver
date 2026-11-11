@@ -5,7 +5,7 @@
 (function () {
   const FBS = (globalThis.FBS = globalThis.FBS || {});
   if (FBS.ao3Archives) return;
-  const { line } = FBS.clean;
+  const { line, toHtml } = FBS.clean;
   const { t } = FBS;
 
   async function get(url) {
@@ -22,7 +22,8 @@
     return [...root.querySelectorAll(':scope > blockquote.userstuff, :scope > div > blockquote.userstuff')]
       .map((el) => {
         const label = line(el.previousElementSibling?.localName === 'p' ? el.previousElementSibling : null);
-        return { heading: label ? label.replace(/:?$/, ':') : '', el };
+        // Подпись как в самой выгрузке: «Summary», «Chapter Notes», «End Notes».
+        return { heading: label, el };
       })
       .filter((s) => s.el.textContent.trim());
   }
@@ -35,11 +36,17 @@
     if (!title || !box) return null;
 
     const meta = [...preface.querySelectorAll('dl.tags > dt')]
-      .map((dt) => ({ label: line(dt), value: line(dt.nextElementSibling) }))
+      .map((dt) => {
+        const dd = dt.nextElementSibling;
+        // У тегов — ссылки, как в выгрузке; статистику и язык хватит текстом.
+        return { label: line(dt), value: line(dd), html: dd?.querySelector('a') ? toHtml(dd, url) : undefined };
+      })
       .filter((m) => m.label && m.value);
     const byline = preface.querySelector('.byline');
-    const authorLinks = byline ? [...byline.querySelectorAll('a[rel="author"]')] : [];
-    const authors = authorLinks.length ? authorLinks.map(line) : [line(byline).replace(/^by\s+/, '')];
+    const links = byline ? [...byline.querySelectorAll('a[rel="author"]')] : [];
+    const authorLinks = links.length
+      ? links.map((a) => ({ name: line(a), url: new URL(a.getAttribute('href'), url).href }))
+      : [{ name: line(byline).replace(/^by\s+/, '') }];
 
     // Глава: заголовок и примечания в .meta.group, текст в следующем .userstuff,
     // примечания в конце — в .meta с id endnotesN.
@@ -53,16 +60,20 @@
         chapters.at(-1).endNotes = readNotes(el);
       }
     }
-    // Работа из одной главы: текст лежит прямо в #chapters.
-    if (!chapters.length && box.textContent.trim()) chapters.push({ title: '', preface: [], body: box, endNotes: [] });
+    // Работа из одной главы: текст лежит прямо в #chapters (рядом — скрытый заголовок для оглавления).
+    if (!chapters.length && box.textContent.trim()) {
+      chapters.push({ title: '', preface: [], body: box.querySelector(':scope > .userstuff') ?? box, endNotes: [] });
+    }
     const full = chapters.filter((c) => c.body);
     if (!full.length) return null;
 
     return {
       site: 'AO3',
+      layout: 'ao3',
       url,
       title,
-      authors: authors.filter(Boolean),
+      authors: authorLinks.map((a) => a.name).filter(Boolean),
+      authorLinks,
       meta,
       preface: readNotes(preface),
       chapters: full,

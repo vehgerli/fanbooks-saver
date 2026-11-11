@@ -19,7 +19,7 @@
     'blockquote{margin:0 0 1em 1.5em}table{border-collapse:collapse}td,th{border:1px solid #888;padding:.2em .4em}';
 
   // Символы, которых не может быть в XML: с ними ридер не откроет страницу.
-  const XML_BAD = /[\u0000-\u0008\u000B\u000C\u000E-\u001F￾￿]/g;
+  const XML_BAD = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFE\uFFFF]/g;
 
   function escape(value) {
     return String(value)

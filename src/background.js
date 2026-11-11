@@ -8,6 +8,7 @@ const CONTENT_FILES = [
   'src/content/rating.js',
   'src/content/clean.js',
   'src/content/epub.js',
+  'src/content/layouts.js',
   'src/content/output.js',
   'src/content/net.js',
   'src/content/sites/ao3-archives.js',
