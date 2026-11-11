@@ -129,9 +129,17 @@ button:disabled {
 }
 
 footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   padding-top: 10px;
   font-size: 12px;
   color: var(--muted);
+}
+
+.rate {
+  align-self: flex-start;
+  color: var(--accent);
 }
 
 .lang {

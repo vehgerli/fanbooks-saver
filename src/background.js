@@ -5,6 +5,7 @@ importScripts('platforms.js');
 const CONTENT_FILES = [
   'src/platforms.js',
   'src/content/overlay.js',
+  'src/content/rating.js',
   'src/content/clean.js',
   'src/content/epub.js',
   'src/content/output.js',

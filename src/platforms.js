@@ -21,6 +21,10 @@
   // Форматы файла; первый — по умолчанию. Выбор в окошке хранится в storage («format»).
   FBS.formats = ['txt', 'html', 'epub'];
 
+  // Страница отзывов в Chrome Web Store. У установленного из магазина расширения id совпадает
+  // с магазинным; у загруженного из папки он другой, и страница не найдётся — это нормально.
+  FBS.reviewsUrl = () => `https://chromewebstore.google.com/detail/${chrome.runtime.id}/reviews`;
+
   /** Строка на выбранном языке; подстановки $1, $2… */
   FBS.t = (key, ...subs) => {
     const message = messages?.[key]?.message;

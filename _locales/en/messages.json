@@ -74,6 +74,18 @@
   "epubNotes": {
     "message": "Notes"
   },
+  "rateAsk": {
+    "message": "Enjoying FanBooks Saver? A rating in the store helps a lot."
+  },
+  "rateButton": {
+    "message": "★ Rate"
+  },
+  "rateLater": {
+    "message": "Not now"
+  },
+  "popupRate": {
+    "message": "★ Like it? Rate it in the Chrome Web Store"
+  },
   "runBusy": {
     "message": "This work is already downloading…"
   },

@@ -24,7 +24,13 @@
       const file = output.build(work, format);
       output.save(file);
       const chapters = work.chapters.length;
-      overlay.done(work.copy ? t('runSavedCopy', work.copy) : t('runSaved'), t('runSavedDetail', file.name, chapters));
+      // Счётчик для просьбы об оценке; если хранилище недоступно — просто не просим.
+      const askRating = await FBS.rating.countDownload().catch(() => false);
+      overlay.done(
+        work.copy ? t('runSavedCopy', work.copy) : t('runSaved'),
+        t('runSavedDetail', file.name, chapters),
+        askRating ? { onRate: FBS.rating.rate, onLater: FBS.rating.later } : undefined,
+      );
     } catch (error) {
       const known = error instanceof site.SiteError;
       overlay.error(known ? error.message : t('runFailed'), known ? platform.name : String(error));

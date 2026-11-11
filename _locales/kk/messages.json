@@ -74,6 +74,18 @@
   "epubNotes": {
     "message": "Ескертпелер"
   },
+  "rateAsk": {
+    "message": "FanBooks Saver ұнай ма? Дүкендегі бағаңыз көп көмектеседі."
+  },
+  "rateButton": {
+    "message": "★ Бағалау"
+  },
+  "rateLater": {
+    "message": "Кейін"
+  },
+  "popupRate": {
+    "message": "★ Ұнады ма? Chrome Web Store-да бағалаңыз"
+  },
   "runBusy": {
     "message": "Шығарма жүктеліп жатыр…"
   },

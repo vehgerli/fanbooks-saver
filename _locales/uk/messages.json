@@ -74,6 +74,18 @@
   "epubNotes": {
     "message": "Примітки"
   },
+  "rateAsk": {
+    "message": "Подобається FanBooks Saver? Оцінка в магазині дуже допоможе."
+  },
+  "rateButton": {
+    "message": "★ Оцінити"
+  },
+  "rateLater": {
+    "message": "Не зараз"
+  },
+  "popupRate": {
+    "message": "★ Подобається? Оцініть у Chrome Web Store"
+  },
   "runBusy": {
     "message": "Робота вже завантажується…"
   },

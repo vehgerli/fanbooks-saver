@@ -1,5 +1,5 @@
 // Окошко расширения: выбор формата, скачивание с текущей вкладки или по ссылке.
-const { platforms, t, languages, loadLanguage, formats } = globalThis.FBS;
+const { platforms, t, languages, loadLanguage, formats, reviewsUrl } = globalThis.FBS;
 
 /** Язык окошка: подписи из выбранного языка и список языков в шапке. */
 async function applyLanguage() {
@@ -62,6 +62,16 @@ async function init() {
   await loadFormat();
   document.getElementById('sites').textContent =
     t('popupSites', platforms.list.map((p) => (p.ready ? p.name : t('popupSoon', p.name))).join(', '));
+
+  const rateLink = document.getElementById('rate');
+  rateLink.textContent = t('popupRate');
+  rateLink.addEventListener('click', async (event) => {
+    event.preventDefault();
+    // Оценили по ссылке — плашка больше не просит.
+    await chrome.storage.local.set({ rateDone: true });
+    await chrome.tabs.create({ url: reviewsUrl() });
+    window.close();
+  });
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   const state = describe(tab?.url ? platforms.detect(tab.url) : null);

@@ -74,6 +74,18 @@
   "epubNotes": {
     "message": "Notes"
   },
+  "rateAsk": {
+    "message": "FanBooks Saver vous plaît ? Une note sur le store aide beaucoup."
+  },
+  "rateButton": {
+    "message": "★ Noter"
+  },
+  "rateLater": {
+    "message": "Plus tard"
+  },
+  "popupRate": {
+    "message": "★ Vous aimez ? Notez-le sur le Chrome Web Store"
+  },
   "runBusy": {
     "message": "L’œuvre est déjà en cours de téléchargement…"
   },
