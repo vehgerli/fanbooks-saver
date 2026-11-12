@@ -15,7 +15,11 @@
   const FAILURE_WAITS_S = [3, 10];
   const SERVER_ERRORS = new Set([500, 502, 503, 504]);
 
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const timer = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  // В скрытой вкладке (скачивание по ссылке) Chrome через 5 минут будит таймеры страницы раз в минуту —
+  // паузы между главами растянулись бы на часы. Поэтому там ждём в фоновом скрипте, его таймеры не тормозят.
+  const sleep = (ms) =>
+    document.hidden ? chrome.runtime.sendMessage({ type: 'sleep', ms }).catch(() => timer(ms)) : timer(ms);
 
   async function countdown(seconds, onStage, stage, message) {
     for (let left = seconds; left > 0; left--) {

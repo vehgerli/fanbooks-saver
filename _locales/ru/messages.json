@@ -20,8 +20,8 @@
   "popupByLink": {
     "message": "По ссылке"
   },
-  "popupOpenAndDownload": {
-    "message": "Открыть и скачать"
+  "popupDownloadLink": {
+    "message": "Скачать"
   },
   "popupSites": {
     "message": "Сайты: $1"
@@ -44,8 +44,8 @@
   "popupStartFailed": {
     "message": "Не получилось запустить скачивание"
   },
-  "popupOpening": {
-    "message": "Открываю работу во вкладке…"
+  "popupBackground": {
+    "message": "Скачиваю в фоне — файл появится в «Загрузках»."
   },
   "menuLink": {
     "message": "Скачать работу по ссылке"

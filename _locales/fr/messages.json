@@ -20,8 +20,8 @@
   "popupByLink": {
     "message": "Par lien"
   },
-  "popupOpenAndDownload": {
-    "message": "Ouvrir et télécharger"
+  "popupDownloadLink": {
+    "message": "Télécharger"
   },
   "popupSites": {
     "message": "Sites : $1"
@@ -44,8 +44,8 @@
   "popupStartFailed": {
     "message": "Impossible de lancer le téléchargement"
   },
-  "popupOpening": {
-    "message": "Ouverture de l’œuvre dans un onglet…"
+  "popupBackground": {
+    "message": "Téléchargement en arrière-plan : le fichier apparaîtra dans Téléchargements."
   },
   "menuLink": {
     "message": "Télécharger l’œuvre du lien"

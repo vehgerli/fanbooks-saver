@@ -20,8 +20,8 @@
   "popupByLink": {
     "message": "Per Link"
   },
-  "popupOpenAndDownload": {
-    "message": "Öffnen und herunterladen"
+  "popupDownloadLink": {
+    "message": "Herunterladen"
   },
   "popupSites": {
     "message": "Seiten: $1"
@@ -44,8 +44,8 @@
   "popupStartFailed": {
     "message": "Download konnte nicht gestartet werden"
   },
-  "popupOpening": {
-    "message": "Öffne das Werk in einem Tab…"
+  "popupBackground": {
+    "message": "Wird im Hintergrund heruntergeladen – die Datei erscheint in „Downloads“."
   },
   "menuLink": {
     "message": "Werk über Link herunterladen"

@@ -20,8 +20,8 @@
   "popupByLink": {
     "message": "Da link"
   },
-  "popupOpenAndDownload": {
-    "message": "Apri e scarica"
+  "popupDownloadLink": {
+    "message": "Scarica"
   },
   "popupSites": {
     "message": "Siti: $1"
@@ -44,8 +44,8 @@
   "popupStartFailed": {
     "message": "Impossibile avviare il download"
   },
-  "popupOpening": {
-    "message": "Apro l’opera in una scheda…"
+  "popupBackground": {
+    "message": "Download in background: il file comparirà in Download."
   },
   "menuLink": {
     "message": "Scarica l’opera dal link"

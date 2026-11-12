@@ -90,17 +90,32 @@ async function init() {
   });
 }
 
+const linkButton = linkForm.querySelector('button');
+
 linkForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const url = linkInput.value.trim();
   const state = describe(platforms.detect(url));
   if (!state.canDownload) return setStatus(linkStatus, state.text, true);
-  setStatus(linkStatus, t('popupOpening'));
+  setStatus(linkStatus, t('popupBackground'));
+  linkButton.disabled = true;
   try {
-    // Окошко закроется, когда откроется вкладка; скачивание продолжит фоновый скрипт.
+    // Работа скачивается в фоновой вкладке; пользователь остаётся на своей странице.
     await send({ type: 'download-url', url, format: currentFormat() });
   } catch (error) {
     setStatus(linkStatus, error.message, true);
+    linkButton.disabled = false;
+  }
+});
+
+// Ход скачивания по ссылке — из фоновой вкладки, пока окошко открыто.
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.type === 'bg-progress') {
+    setStatus(linkStatus, [message.text, message.detail].filter(Boolean).join(' — '));
+  } else if (message.type === 'bg-done') {
+    setStatus(linkStatus, [message.text, message.detail].filter(Boolean).join(' '), !message.ok);
+    linkButton.disabled = false;
+    if (message.ok) linkInput.value = '';
   }
 });
 

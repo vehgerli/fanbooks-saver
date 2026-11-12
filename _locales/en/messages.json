@@ -20,8 +20,8 @@
   "popupByLink": {
     "message": "By link"
   },
-  "popupOpenAndDownload": {
-    "message": "Open and download"
+  "popupDownloadLink": {
+    "message": "Download"
   },
   "popupSites": {
     "message": "Sites: $1"
@@ -44,8 +44,8 @@
   "popupStartFailed": {
     "message": "Couldn’t start the download"
   },
-  "popupOpening": {
-    "message": "Opening the work in a tab…"
+  "popupBackground": {
+    "message": "Downloading in the background — the file will appear in Downloads."
   },
   "menuLink": {
     "message": "Download work from link"

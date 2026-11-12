@@ -20,8 +20,8 @@
   "popupByLink": {
     "message": "За посиланням"
   },
-  "popupOpenAndDownload": {
-    "message": "Відкрити й завантажити"
+  "popupDownloadLink": {
+    "message": "Завантажити"
   },
   "popupSites": {
     "message": "Сайти: $1"
@@ -44,8 +44,8 @@
   "popupStartFailed": {
     "message": "Не вдалося запустити завантаження"
   },
-  "popupOpening": {
-    "message": "Відкриваю роботу у вкладці…"
+  "popupBackground": {
+    "message": "Завантажую у фоні — файл з’явиться в «Завантаженнях»."
   },
   "menuLink": {
     "message": "Завантажити роботу за посиланням"

@@ -25,7 +25,7 @@ async function savedFormat() {
   return FBS.formats.includes(format) ? format : 'txt';
 }
 
-async function startInTab(tabId, format) {
+async function startInTab(tabId, format, options = {}) {
   // Убираем «!» от прошлой неудачной попытки (см. reportError).
   chrome.action.setBadgeText({ tabId, text: '' }).catch(() => {});
   chrome.action.setTitle({ tabId, title: 'FanBooks Saver' }).catch(() => {});
@@ -33,10 +33,10 @@ async function startInTab(tabId, format) {
   // Не ждём окончания: скачивание идёт во вкладке и показывает свой прогресс там же.
   await chrome.scripting.executeScript({
     target: { tabId },
-    func: (f) => {
-      globalThis.FBS.start(f);
+    func: (f, o) => {
+      globalThis.FBS.start(f, o);
     },
-    args: [format],
+    args: [format, options],
   });
 }
 
@@ -61,16 +61,34 @@ function waitForTabLoaded(tabId) {
   });
 }
 
-/** По ссылке: открываем работу в новой вкладке и скачиваем оттуда. */
+/**
+ * По ссылке: открываем работу в фоновой вкладке (пользователь остаётся на своей странице)
+ * и скачиваем оттуда — со входом пользователя на сайт, как и со страницы. Вкладка закроется
+ * сама, когда файл сохранится; при ошибке — выйдет вперёд, чтобы было видно, что случилось.
+ */
 async function startFromUrl(url, format) {
-  const tab = await chrome.tabs.create({ url, active: true });
+  const tab = await chrome.tabs.create({ url, active: false });
   try {
     await waitForTabLoaded(tab.id);
-    await startInTab(tab.id, format);
+    await startInTab(tab.id, format, { background: true });
   } catch (error) {
+    chrome.tabs.update(tab.id, { active: true }).catch(() => {});
     error.tabId = tab.id; // Чтобы показать ошибку на значке именно этой вкладки.
     throw error;
   }
+}
+
+/** Фоновая вкладка закончила: файл сохранён — закрываем, ошибка — показываем вкладку с плашкой. */
+async function finishBackground(tabId, ok) {
+  if (!ok) {
+    await chrome.tabs.update(tabId, { active: true }).catch(() => {});
+    return;
+  }
+  // Пауза, чтобы браузер успел забрать файл; вкладку, которую пользователь открыл сам, не трогаем.
+  setTimeout(async () => {
+    const tab = await chrome.tabs.get(tabId).catch(() => null);
+    if (tab && !tab.active) chrome.tabs.remove(tabId).catch(() => {});
+  }, 5000);
 }
 
 /**
@@ -101,7 +119,16 @@ async function fetchArchive(href) {
   return { status: response.status, url: response.url, text: response.ok ? await response.text() : '' };
 }
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  // Пауза для скрытой вкладки (см. net.js): таймеры фонового скрипта браузер не тормозит.
+  if (message.type === 'sleep') {
+    setTimeout(() => sendResponse(true), Math.min(Number(message.ms) || 0, 60000));
+    return true;
+  }
+  if (message.type === 'bg-done') {
+    if (sender.tab?.id != null) finishBackground(sender.tab.id, message.ok);
+    return false;
+  }
   if (message.type === 'fetch-archive') {
     fetchArchive(message.url).then(
       (result) => sendResponse({ ok: true, ...result }),

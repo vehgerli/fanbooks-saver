@@ -20,8 +20,8 @@
   "popupByLink": {
     "message": "Сілтеме бойынша"
   },
-  "popupOpenAndDownload": {
-    "message": "Ашу және жүктеу"
+  "popupDownloadLink": {
+    "message": "Жүктеу"
   },
   "popupSites": {
     "message": "Сайттар: $1"
@@ -44,8 +44,8 @@
   "popupStartFailed": {
     "message": "Жүктеуді бастау мүмкін болмады"
   },
-  "popupOpening": {
-    "message": "Шығарманы қойындыда ашып жатырмын…"
+  "popupBackground": {
+    "message": "Фонда жүктеп жатырмын — файл «Жүктеулер» қалтасында пайда болады."
   },
   "menuLink": {
     "message": "Шығарманы сілтеме бойынша жүктеу"
