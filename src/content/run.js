@@ -7,20 +7,26 @@
   /**
    * background — скачивание по ссылке в фоновой вкладке: ход и итог ещё и сообщениями —
    * окошку расширения (показать) и фоновому скрипту (закрыть вкладку или показать её с ошибкой).
+   * translate — HTML с переводом браузера (translated.js): работа показывается во вкладке,
+   * сохраняется после того, как пользователь нажмёт «Перевести».
    */
-  async function start(format, { background = false } = {}) {
+  async function start(format, { background = false, translate = false } = {}) {
     await FBS.loadLanguage();
     const { overlay, platforms, output, sites, t } = FBS;
     const tell = (message) => background && chrome.runtime.sendMessage(message).catch(() => {});
-    const working = (text, detail) => {
-      overlay.working(text, detail);
+    const working = (text, detail, onClose) => {
+      overlay.working(text, detail, onClose);
       tell({ type: 'bg-progress', text, detail });
     };
     const fail = (text, detail) => {
       overlay.error(text, detail);
       tell({ type: 'bg-done', ok: false, text, detail });
     };
-    if (busy) return overlay.working(t('runBusy'));
+    if (busy) {
+      // Висит сохранение с переводом (например, ждёт «Перевести») — отменяем его и начинаем заново.
+      if (!FBS.translated.cancel()) return overlay.working(t('runBusy'));
+      while (busy) await new Promise((resolve) => setTimeout(resolve, 100));
+    }
     const found = platforms.detect(location.href);
     if (!found) return fail(t('runUnsupportedSite'));
     const { platform, workId } = found;
@@ -33,16 +39,18 @@
       const work = await site.fetchWork(workId, (stage, detail) => working(stage, detail ?? platform.name));
       working(t('runBuilding', format.toUpperCase()), work.title);
       const file = output.build(work, format);
-      output.save(file);
+      const withTranslation = translate && format === 'html';
+      const name = withTranslation ? await FBS.translated.run(work, file, working) : (output.save(file), file.name);
       const chapters = work.chapters.length;
       // Счётчик для просьбы об оценке; если хранилище недоступно — просто не просим.
       const askRating = await FBS.rating.countDownload().catch(() => false);
-      const text = work.copy ? t('runSavedCopy', work.copy) : t('runSaved');
-      const detail = t('runSavedDetail', file.name, chapters);
+      const text = withTranslation ? t('trSaved') : work.copy ? t('runSavedCopy', work.copy) : t('runSaved');
+      const detail = t('runSavedDetail', name, chapters);
       // Фоновую вкладку никто не видит — оценку попросим при следующем скачивании на виду.
       overlay.done(text, detail, askRating && !background ? { onRate: FBS.rating.rate, onLater: FBS.rating.later } : undefined);
       tell({ type: 'bg-done', ok: true, text, detail });
     } catch (error) {
+      if (error instanceof FBS.translated.Cancelled) return overlay.hide();
       const known = error instanceof site.SiteError;
       fail(known ? error.message : t('runFailed'), known ? platform.name : String(error));
       if (!known) console.error('[FanBooks Saver]', error);

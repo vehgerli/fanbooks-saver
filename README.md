@@ -20,6 +20,8 @@ to read offline, on an e-reader, or just to keep.
 - **All chapters in one file** — with the work's header: title, author, tags, summary and notes.
 - **The author's formatting is kept**: italics, bold, alignment, lists, images.
 - **Three ways to download**: from the open page, by pasting a link, or from the right-click menu.
+- **With browser translation** (HTML): the whole work opens in the tab, you press “Translate” in the
+  browser, and the file is saved translated — with pictures, links and embedded video.
 - **When AO3 is down**, the extension looks for a saved copy of the work on ao3saver and in the
   Internet Archive's Wayback Machine, and tells you where the copy came from and how old it is.
 - **8 interface languages**: English, Русский, Українська, Қазақша, Español, Deutsch, Français, Italiano.

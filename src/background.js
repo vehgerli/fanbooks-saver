@@ -17,6 +17,7 @@ const CONTENT_FILES = [
   'src/content/sites/ffn.js',
   'src/content/sites/fanficsme.js',
   'src/content/sites/wattpad.js',
+  'src/content/translated.js',
   'src/content/run.js',
 ];
 
@@ -65,12 +66,13 @@ function waitForTabLoaded(tabId) {
  * По ссылке: открываем работу в фоновой вкладке (пользователь остаётся на своей странице)
  * и скачиваем оттуда — со входом пользователя на сайт, как и со страницы. Вкладка закроется
  * сама, когда файл сохранится; при ошибке — выйдет вперёд, чтобы было видно, что случилось.
+ * С переводом вкладка открывается на виду: «Перевести» в ней нажимает сам пользователь.
  */
-async function startFromUrl(url, format) {
-  const tab = await chrome.tabs.create({ url, active: false });
+async function startFromUrl(url, format, { translate = false } = {}) {
+  const tab = await chrome.tabs.create({ url, active: translate });
   try {
     await waitForTabLoaded(tab.id);
-    await startInTab(tab.id, format, { background: true });
+    await startInTab(tab.id, format, translate ? { translate } : { background: true });
   } catch (error) {
     chrome.tabs.update(tab.id, { active: true }).catch(() => {});
     error.tabId = tab.id; // Чтобы показать ошибку на значке именно этой вкладки.
@@ -110,6 +112,22 @@ function reportError(error, tabId) {
 // не даёт (чужой адрес), а фоновому скрипту можно — адреса есть в host_permissions.
 const ARCHIVE_HOSTS = ['ao3saver.com', 'archive.org', 'web.archive.org'];
 
+/**
+ * Картинка для файла с переводом (translated.js), если со страницы её не прочитать:
+ * сайтам из host_permissions фоновый скрипт ходит без ограничений браузера.
+ */
+async function fetchImage(href) {
+  const url = new URL(href);
+  if (url.protocol !== 'https:' && url.protocol !== 'http:') throw new Error('not http');
+  const response = await fetch(url.href);
+  const blob = response.ok ? await response.blob() : null;
+  if (!blob?.type.startsWith('image/') || blob.size > 20 * 1024 * 1024) throw new Error('not an image');
+  const bytes = new Uint8Array(await blob.arrayBuffer());
+  let binary = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return `data:${blob.type};base64,${btoa(binary)}`;
+}
+
 async function fetchArchive(href) {
   const url = new URL(href);
   if (url.protocol !== 'https:' || !ARCHIVE_HOSTS.includes(url.hostname)) {
@@ -129,6 +147,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (sender.tab?.id != null) finishBackground(sender.tab.id, message.ok);
     return false;
   }
+  if (message.type === 'fetch-image') {
+    fetchImage(message.url).then(
+      (dataUrl) => sendResponse({ ok: true, dataUrl }),
+      (error) => sendResponse({ ok: false, error: String(error?.message ?? error) }),
+    );
+    return true;
+  }
   if (message.type === 'fetch-archive') {
     fetchArchive(message.url).then(
       (result) => sendResponse({ ok: true, ...result }),
@@ -138,9 +163,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
   const run =
     message.type === 'download-tab'
-      ? startInTab(message.tabId, message.format)
+      ? startInTab(message.tabId, message.format, { translate: !!message.translate })
       : message.type === 'download-url'
-        ? startFromUrl(message.url, message.format)
+        ? startFromUrl(message.url, message.format, { translate: !!message.translate })
         : null;
   if (!run) return false;
   run.then(

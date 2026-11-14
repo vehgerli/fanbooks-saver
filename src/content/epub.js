@@ -238,5 +238,5 @@
     );
   }
 
-  FBS.epub = { build };
+  FBS.epub = { build, language };
 })();

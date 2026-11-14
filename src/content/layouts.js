@@ -33,6 +33,7 @@
     #chapters { font-family: "Nimbus Roman No9 L", "Times New Roman", serif; padding: 1em; }
     .userstuff { font-family: "Nimbus Roman No9 L", "Times New Roman", serif; padding: 1em; }
     .toc-heading { display: none; }
+    .userstuff img, .userstuff video, .userstuff iframe, .userstuff audio { max-width: 100%; }
     .center { text-align: center; } .right { text-align: right; } .justify { text-align: justify; }
   `;
 

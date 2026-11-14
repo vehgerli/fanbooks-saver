@@ -11,15 +11,6 @@
   "popupFormat": {
     "message": "Format"
   },
-  "popupThisPage": {
-    "message": "This page"
-  },
-  "popupDownload": {
-    "message": "Download work"
-  },
-  "popupByLink": {
-    "message": "By link"
-  },
   "popupDownloadLink": {
     "message": "Download"
   },
@@ -29,17 +20,8 @@
   "popupSoon": {
     "message": "$1 (soon)"
   },
-  "popupOpenSupported": {
-    "message": "Open a work on one of the sites below."
-  },
   "popupPlatformSoon": {
     "message": "$1: support is coming soon."
-  },
-  "popupOpenWorkPage": {
-    "message": "$1: open the work’s own page."
-  },
-  "popupWorkFound": {
-    "message": "$1, work $2."
   },
   "popupStartFailed": {
     "message": "Couldn’t start the download"
@@ -187,5 +169,71 @@
   },
   "errNoPartText": {
     "message": "The site doesn’t show the text of part $1."
+  },
+  "popupWork": {
+    "message": "Work"
+  },
+  "popupTranslate": {
+    "message": "With browser translation"
+  },
+  "popupTranslateHint": {
+    "message": "The whole work opens in the tab — press “Translate” in the browser, and the file is saved with the translation, pictures and links."
+  },
+  "popupTypeSite": {
+    "message": "Paste a link or type a site and press Tab: $1."
+  },
+  "popupPressTab": {
+    "message": "Press Tab to insert the site address."
+  },
+  "popupUnsupported": {
+    "message": "This link isn’t from a supported site."
+  },
+  "popupAddWorkId": {
+    "message": "$1: add the work number."
+  },
+  "popupNotWork": {
+    "message": "$1: this isn’t a link to a work."
+  },
+  "popupWorkHere": {
+    "message": "$1, work $2 — open in this tab."
+  },
+  "popupWorkOther": {
+    "message": "$1, work $2 — will download in the background, the file will appear in Downloads."
+  },
+  "popupWorkOpen": {
+    "message": "$1, work $2 — will open in a new tab for translation."
+  },
+  "popupOpenWork": {
+    "message": "Open work"
+  },
+  "video": {
+    "message": "Video"
+  },
+  "audio": {
+    "message": "Audio"
+  },
+  "trPressTranslate": {
+    "message": "Press “Translate” in the browser — saving will start by itself."
+  },
+  "trPressTranslateDetail": {
+    "message": "The translate icon is in the address bar, or right-click the page → “Translate”. Already says “Translated” but the text isn’t translated? Click “Show original”, then “Translate” again. × — cancel."
+  },
+  "trScrolling": {
+    "message": "Scrolling so the whole work gets translated…"
+  },
+  "trPercent": {
+    "message": "$1 % of the work"
+  },
+  "trImages": {
+    "message": "Building the file: images $1 of $2"
+  },
+  "trSaved": {
+    "message": "Saved with translation"
+  },
+  "trTimeout": {
+    "message": "“Translate” wasn’t pressed — saving cancelled."
+  },
+  "trFileSuffix": {
+    "message": "translated"
   }
 }

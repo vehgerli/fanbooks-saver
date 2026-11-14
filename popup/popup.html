@@ -19,21 +19,23 @@
         <label><input type="radio" name="format" value="html" /> <span>HTML</span></label>
         <label><input type="radio" name="format" value="epub" /> <span>EPUB</span></label>
       </div>
+      <div id="translate-box" class="translate" hidden>
+        <label class="check"><input id="translate" type="checkbox" /> <span data-i18n="popupTranslate"></span></label>
+        <p class="hint" data-i18n="popupTranslateHint"></p>
+      </div>
     </section>
 
     <section>
-      <h2 data-i18n="popupThisPage"></h2>
-      <p id="page-status" class="status"></p>
-      <button id="download-page" type="button" hidden data-i18n="popupDownload"></button>
-    </section>
-
-    <section>
-      <h2 data-i18n="popupByLink"></h2>
-      <form id="link-form">
-        <input id="link" type="url" placeholder="https://archiveofourown.org/works/…" required />
-        <button type="submit" data-i18n="popupDownloadLink"></button>
+      <h2 data-i18n="popupWork"></h2>
+      <form id="work-form">
+        <div class="field">
+          <input id="link" type="text" inputmode="url" spellcheck="false" autocomplete="off" placeholder="https://archiveofourown.org/works/…" />
+          <div id="ghost" class="ghost" hidden><span id="ghost-typed" class="typed"></span><span id="ghost-rest"></span></div>
+          <span id="tab-key" class="kbd" hidden>Tab</span>
+        </div>
+        <p id="status" class="status"></p>
+        <button id="download" type="submit" disabled></button>
       </form>
-      <p id="link-status" class="status"></p>
     </section>
 
     <footer>

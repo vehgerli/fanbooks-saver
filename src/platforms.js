@@ -28,7 +28,14 @@
   /** Строка на выбранном языке; подстановки $1, $2… */
   FBS.t = (key, ...subs) => {
     const message = messages?.[key]?.message;
-    if (message == null) return chrome.i18n.getMessage(key, subs.map(String)) || key;
+    if (message == null) {
+      // Расширение обновили, а вкладку нет: у старого скрипта страницы chrome.* уже не работает.
+      try {
+        return chrome.i18n.getMessage(key, subs.map(String)) || key;
+      } catch {
+        return key;
+      }
+    }
     return message.replace(/\$(\d)/g, (_, n) => String(subs[n - 1] ?? ''));
   };
 
@@ -48,6 +55,7 @@
       name: 'AO3',
       hosts: ['archiveofourown.org', 'ao3.org'],
       ready: true,
+      workUrl: 'https://archiveofourown.org/works/',
       workId: (url) => url.pathname.match(/\/works\/(\d+)/)?.[1] ?? null,
     },
     {
@@ -57,6 +65,7 @@
       },
       hosts: ['ficbook.net'],
       ready: true,
+      workUrl: 'https://ficbook.net/readfic/',
       workId: (url) => url.pathname.match(/^\/readfic\/([\w-]+)/)?.[1] ?? null,
     },
     {
@@ -64,6 +73,7 @@
       name: 'FanFiction.net',
       hosts: ['fanfiction.net'],
       ready: true,
+      workUrl: 'https://www.fanfiction.net/s/',
       workId: (url) => url.pathname.match(/^\/s\/(\d+)/)?.[1] ?? null,
     },
     {
@@ -71,6 +81,7 @@
       name: 'Fanfics.me',
       hosts: ['fanfics.me'],
       ready: true,
+      workUrl: 'https://fanfics.me/fic',
       workId: (url) =>
         url.pathname.match(/^\/fic(\d+)/)?.[1] ??
         (url.pathname === '/read.php' ? url.searchParams.get('id') : null),
@@ -80,6 +91,7 @@
       name: 'Wattpad',
       hosts: ['wattpad.com'],
       ready: true,
+      workUrl: 'https://www.wattpad.com/story/',
       workId: (url) =>
         url.pathname.match(/^\/story\/(\d+)/)?.[1] ?? url.pathname.match(/^\/(\d+)-/)?.[1] ?? null,
     },
@@ -110,5 +122,27 @@
     );
   }
 
-  FBS.platforms = { list: PLATFORMS, detect, urlPatterns };
+  // Что набрать в поле ссылки перед Tab: начало любого из слов → адрес работы на этом сайте.
+  // Порядок важен: «f» — Книга Фанфиков, «fanfic» — Fanfics.me, «fanfict» — FanFiction.net.
+  const SHORTCUTS = [
+    ['ao3', 'ao3'],
+    ['ao3', 'archiveofourown'],
+    ['ficbook', 'ficbook'],
+    ['ficbook', 'книга'],
+    ['ffn', 'ffn'],
+    ['fanficsme', 'fanfics'],
+    ['ffn', 'fanfiction'],
+    ['wattpad', 'wattpad'],
+  ];
+  FBS.shortcutNames = ['ao3', 'ficbook', 'ffn', 'fanfics', 'wattpad'];
+
+  /** Адрес, который подставит Tab для набранного текста; null — подставлять нечего. */
+  function complete(typed) {
+    const text = typed.trim().toLowerCase();
+    if (!text || /[/:.]/.test(text)) return null;
+    const hit = SHORTCUTS.find(([, word]) => word.startsWith(text));
+    return hit ? PLATFORMS.find((p) => p.id === hit[0]).workUrl : null;
+  }
+
+  FBS.platforms = { list: PLATFORMS, detect, urlPatterns, complete };
 })();

@@ -26,7 +26,7 @@
     '.page-break{break-before:page;border:0;border-top:1px solid #ddd;margin:2.5rem 0}' +
     '.text p{margin:0 0 1em}.lines{white-space:pre-wrap}.lines p{margin:0}.center{text-align:center}.right{text-align:right}.justify{text-align:justify}' +
     'a{color:#900}table{border-collapse:collapse;max-width:100%}td,th{border:1px solid #aaa;padding:.35rem .5rem;vertical-align:top}' +
-    'img{max-width:100%;height:auto}blockquote{margin:0 0 1em 1.5rem}' +
+    'img,video{max-width:100%;height:auto}iframe{max-width:100%;border:0}audio{max-width:100%}blockquote{margin:0 0 1em 1.5rem}' +
     '@media(max-width:700px){.work{margin:0;padding:1.5rem;border:0}}' +
     '@media print{body{background:#fff}.work{border:0;margin:0;max-width:none}}';
 

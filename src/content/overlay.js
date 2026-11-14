@@ -33,12 +33,16 @@
    * ask — просьба оценить под сообщением: { onRate, onLater }. Пока она видна, плашка сама не закрывается;
    * закрыть крестиком — то же, что «Не сейчас».
    */
-  function render({ state, text, detail, ask }) {
+  function render({ state, text, detail, ask, onClose }) {
     if (!host) {
       host = document.createElement('fanbooks-saver');
+      // Переводчик браузера плашку не трогает: она уже на языке интерфейса расширения.
+      host.setAttribute('translate', 'no');
+      host.className = 'notranslate';
       host.attachShadow({ mode: 'open' });
-      document.documentElement.appendChild(host);
     }
+    // Страницу целиком могли подменить (сохранение с переводом) — плашка переезжает в текущую.
+    if (!host.isConnected) document.documentElement.appendChild(host);
     clearTimeout(hideTimer);
     const icon =
       state === 'working' ? '<span class="spin"></span>' : `<span class="mark">${state === 'done' ? '✓' : '!'}</span>`;
@@ -68,7 +72,10 @@
       root.querySelector('.later').addEventListener('click', answer(ask.onLater));
       root.querySelector('.close').addEventListener('click', answer(ask.onLater));
     } else {
-      root.querySelector('.close').addEventListener('click', hide);
+      root.querySelector('.close').addEventListener('click', () => {
+        hide();
+        onClose?.();
+      });
       if (state === 'done') hideTimer = setTimeout(hide, 8000);
     }
   }
@@ -80,7 +87,8 @@
   }
 
   FBS.overlay = {
-    working: (text, detail) => render({ state: 'working', text, detail }),
+    // onClose — крестик не только прячет плашку, но и отменяет то, чего она ждёт.
+    working: (text, detail, onClose) => render({ state: 'working', text, detail, onClose }),
     done: (text, detail, ask) => render({ state: 'done', text, detail, ask }),
     error: (text, detail) => render({ state: 'error', text, detail }),
     hide,

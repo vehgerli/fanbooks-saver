@@ -10,12 +10,15 @@
     'code', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'td', 'th', 'caption', 'dl', 'dt', 'dd',
   ]);
   // Выбрасываем вместе с содержимым.
-  const DROP = new Set(['script', 'style', 'noscript', 'iframe', 'form', 'input', 'button', 'select', 'textarea', 'svg']);
+  const DROP = new Set(['script', 'style', 'noscript', 'form', 'input', 'button', 'select', 'textarea', 'svg']);
   const BLOCK = new Set([
     'p', 'div', 'blockquote', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'table', 'tr',
     'center', 'dl', 'dt', 'dd', 'figure', 'figcaption', 'caption', 'section', 'article', 'header', 'footer',
   ]);
   const ALIGN = { center: 'center', right: 'right', justify: 'justify' };
+  // Вставки автора: видео (YouTube и т. п.) и аудио. В HTML остаются плеером — играют, пока есть сеть;
+  // в TXT и EPUB — подписью со ссылкой.
+  const MEDIA = new Set(['iframe', 'audio', 'video']);
 
   function alignOf(el) {
     if (el.localName === 'center') return 'center';
@@ -50,6 +53,7 @@
     if (node.nodeType !== Node.ELEMENT_NODE) return null;
     const tag = node.localName;
     if (DROP.has(tag)) return null;
+    if (MEDIA.has(tag)) return mediaNode(node, doc, base, opts);
 
     const children = () => {
       const fragment = doc.createDocumentFragment();
@@ -92,6 +96,35 @@
       }
     }
     el.appendChild(children());
+    return el;
+  }
+
+  /** Адрес вставки: свой src или первый <source> внутри; только http(s). */
+  function mediaSrc(node, base) {
+    const raw = node.getAttribute('src') || node.querySelector('source[src]')?.getAttribute('src') || '';
+    const src = absolute(raw, base);
+    return src && !src.startsWith('mailto:') ? src : null;
+  }
+
+  function mediaLabel(node, src) {
+    return `[${FBS.t(node.localName === 'audio' ? 'audio' : 'video')}: ${src}]`;
+  }
+
+  function mediaNode(node, doc, base, opts) {
+    const src = mediaSrc(node, base);
+    if (!src) return null;
+    if (opts.images === false) return doc.createTextNode(mediaLabel(node, src));
+    const el = doc.createElement(node.localName);
+    el.setAttribute('src', src);
+    if (node.localName === 'iframe') {
+      for (const name of ['width', 'height']) {
+        const value = node.getAttribute(name);
+        if (/^\d+%?$/.test(value ?? '')) el.setAttribute(name, value);
+      }
+      el.setAttribute('allowfullscreen', '');
+    } else {
+      el.setAttribute('controls', '');
+    }
     return el;
   }
 
@@ -141,6 +174,10 @@
       if (node.nodeType !== Node.ELEMENT_NODE) return;
       const tag = node.localName;
       if (DROP.has(tag)) return;
+      if (MEDIA.has(tag)) {
+        const src = mediaSrc(node, location.href);
+        return void (src && out.push(mediaLabel(node, src)));
+      }
       if (tag === 'br') return void out.push('\n');
       if (tag === 'hr') return void out.push('\n\n* * *\n\n');
       if (tag === 'img') {

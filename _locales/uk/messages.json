@@ -11,15 +11,6 @@
   "popupFormat": {
     "message": "Формат"
   },
-  "popupThisPage": {
-    "message": "Ця сторінка"
-  },
-  "popupDownload": {
-    "message": "Завантажити роботу"
-  },
-  "popupByLink": {
-    "message": "За посиланням"
-  },
   "popupDownloadLink": {
     "message": "Завантажити"
   },
@@ -29,17 +20,8 @@
   "popupSoon": {
     "message": "$1 (незабаром)"
   },
-  "popupOpenSupported": {
-    "message": "Відкрийте роботу на одному із сайтів нижче."
-  },
   "popupPlatformSoon": {
     "message": "$1 — підтримка незабаром буде."
-  },
-  "popupOpenWorkPage": {
-    "message": "$1: відкрийте сторінку самої роботи."
-  },
-  "popupWorkFound": {
-    "message": "$1, робота $2."
   },
   "popupStartFailed": {
     "message": "Не вдалося запустити завантаження"
@@ -187,5 +169,71 @@
   },
   "errNoPartText": {
     "message": "Сайт не показує текст частини $1."
+  },
+  "popupWork": {
+    "message": "Робота"
+  },
+  "popupTranslate": {
+    "message": "З перекладом браузера"
+  },
+  "popupTranslateHint": {
+    "message": "Уся робота відкриється у вкладці — натисніть «Перекласти» в браузері, і файл збережеться з перекладом, картинками й посиланнями."
+  },
+  "popupTypeSite": {
+    "message": "Вставте посилання або почніть із сайту й натисніть Tab: $1."
+  },
+  "popupPressTab": {
+    "message": "Натисніть Tab — підставиться адреса сайту."
+  },
+  "popupUnsupported": {
+    "message": "Посилання не з підтримуваного сайту."
+  },
+  "popupAddWorkId": {
+    "message": "$1: допишіть номер роботи."
+  },
+  "popupNotWork": {
+    "message": "$1: це не посилання на роботу."
+  },
+  "popupWorkHere": {
+    "message": "$1, робота $2 — відкрита в цій вкладці."
+  },
+  "popupWorkOther": {
+    "message": "$1, робота $2 — завантажиться у фоні, файл з’явиться в «Завантаженнях»."
+  },
+  "popupWorkOpen": {
+    "message": "$1, робота $2 — відкриється в новій вкладці для перекладу."
+  },
+  "popupOpenWork": {
+    "message": "Відкрити роботу"
+  },
+  "video": {
+    "message": "Відео"
+  },
+  "audio": {
+    "message": "Аудіо"
+  },
+  "trPressTranslate": {
+    "message": "Натисніть «Перекласти» в браузері — збереження почнеться саме."
+  },
+  "trPressTranslateDetail": {
+    "message": "Значок перекладу — в адресному рядку, або правою кнопкою по сторінці → «Перекласти». Уже написано «Перекладено», а текст не перекладається — натисніть «Показати оригінал» і знову «Перекласти». × — скасувати."
+  },
+  "trScrolling": {
+    "message": "Прокручую, щоб переклалася вся робота…"
+  },
+  "trPercent": {
+    "message": "$1 % роботи"
+  },
+  "trImages": {
+    "message": "Збираю файл: картинки $1 з $2"
+  },
+  "trSaved": {
+    "message": "Збережено з перекладом"
+  },
+  "trTimeout": {
+    "message": "«Перекласти» так і не натиснули — збереження скасовано."
+  },
+  "trFileSuffix": {
+    "message": "переклад"
   }
 }

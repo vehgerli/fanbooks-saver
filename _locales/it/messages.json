@@ -11,15 +11,6 @@
   "popupFormat": {
     "message": "Formato"
   },
-  "popupThisPage": {
-    "message": "Questa pagina"
-  },
-  "popupDownload": {
-    "message": "Scarica l’opera"
-  },
-  "popupByLink": {
-    "message": "Da link"
-  },
   "popupDownloadLink": {
     "message": "Scarica"
   },
@@ -29,17 +20,8 @@
   "popupSoon": {
     "message": "$1 (presto)"
   },
-  "popupOpenSupported": {
-    "message": "Apri un’opera su uno dei siti qui sotto."
-  },
   "popupPlatformSoon": {
     "message": "$1: il supporto arriverà presto."
-  },
-  "popupOpenWorkPage": {
-    "message": "$1: apri la pagina dell’opera."
-  },
-  "popupWorkFound": {
-    "message": "$1, opera $2."
   },
   "popupStartFailed": {
     "message": "Impossibile avviare il download"
@@ -187,5 +169,71 @@
   },
   "errNoPartText": {
     "message": "Il sito non mostra il testo della parte $1."
+  },
+  "popupWork": {
+    "message": "Opera"
+  },
+  "popupTranslate": {
+    "message": "Con la traduzione del browser"
+  },
+  "popupTranslateHint": {
+    "message": "L’opera intera si apre nella scheda: premi «Traduci» nel browser e il file verrà salvato con traduzione, immagini e link."
+  },
+  "popupTypeSite": {
+    "message": "Incolla un link o scrivi un sito e premi Tab: $1."
+  },
+  "popupPressTab": {
+    "message": "Premi Tab per inserire l’indirizzo del sito."
+  },
+  "popupUnsupported": {
+    "message": "Il link non è di un sito supportato."
+  },
+  "popupAddWorkId": {
+    "message": "$1: aggiungi il numero dell’opera."
+  },
+  "popupNotWork": {
+    "message": "$1: non è un link a un’opera."
+  },
+  "popupWorkHere": {
+    "message": "$1, opera $2 — aperta in questa scheda."
+  },
+  "popupWorkOther": {
+    "message": "$1, opera $2 — verrà scaricata in background, il file comparirà in Download."
+  },
+  "popupWorkOpen": {
+    "message": "$1, opera $2 — si aprirà in una nuova scheda per la traduzione."
+  },
+  "popupOpenWork": {
+    "message": "Apri l’opera"
+  },
+  "video": {
+    "message": "Video"
+  },
+  "audio": {
+    "message": "Audio"
+  },
+  "trPressTranslate": {
+    "message": "Premi «Traduci» nel browser: il salvataggio partirà da solo."
+  },
+  "trPressTranslateDetail": {
+    "message": "L’icona di traduzione è nella barra degli indirizzi, oppure clic destro sulla pagina → «Traduci». C’è già scritto «Tradotto» ma il testo non si traduce? Premi «Mostra originale» e di nuovo «Traduci». × — annulla."
+  },
+  "trScrolling": {
+    "message": "Scorro perché venga tradotta tutta l’opera…"
+  },
+  "trPercent": {
+    "message": "$1 % dell’opera"
+  },
+  "trImages": {
+    "message": "Creo il file: immagini $1 di $2"
+  },
+  "trSaved": {
+    "message": "Salvato con la traduzione"
+  },
+  "trTimeout": {
+    "message": "«Traduci» non è stato premuto: salvataggio annullato."
+  },
+  "trFileSuffix": {
+    "message": "tradotto"
   }
 }

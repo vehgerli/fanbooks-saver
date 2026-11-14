@@ -11,15 +11,6 @@
   "popupFormat": {
     "message": "Формат"
   },
-  "popupThisPage": {
-    "message": "Эта страница"
-  },
-  "popupDownload": {
-    "message": "Скачать работу"
-  },
-  "popupByLink": {
-    "message": "По ссылке"
-  },
   "popupDownloadLink": {
     "message": "Скачать"
   },
@@ -29,17 +20,8 @@
   "popupSoon": {
     "message": "$1 (скоро)"
   },
-  "popupOpenSupported": {
-    "message": "Откройте работу на одном из сайтов ниже."
-  },
   "popupPlatformSoon": {
     "message": "$1 — поддержка скоро будет."
-  },
-  "popupOpenWorkPage": {
-    "message": "$1: откройте страницу самой работы."
-  },
-  "popupWorkFound": {
-    "message": "$1, работа $2."
   },
   "popupStartFailed": {
     "message": "Не получилось запустить скачивание"
@@ -187,5 +169,71 @@
   },
   "errNoPartText": {
     "message": "Сайт не показывает текст части $1."
+  },
+  "popupWork": {
+    "message": "Работа"
+  },
+  "popupTranslate": {
+    "message": "С переводом браузера"
+  },
+  "popupTranslateHint": {
+    "message": "Вся работа откроется во вкладке — нажмите «Перевести» в браузере, и файл сохранится с переводом, картинками и ссылками."
+  },
+  "popupTypeSite": {
+    "message": "Вставьте ссылку или начните с сайта и нажмите Tab: $1."
+  },
+  "popupPressTab": {
+    "message": "Нажмите Tab — подставится адрес сайта."
+  },
+  "popupUnsupported": {
+    "message": "Ссылка не с поддерживаемого сайта."
+  },
+  "popupAddWorkId": {
+    "message": "$1: допишите номер работы."
+  },
+  "popupNotWork": {
+    "message": "$1: это не ссылка на работу."
+  },
+  "popupWorkHere": {
+    "message": "$1, работа $2 — открыта в этой вкладке."
+  },
+  "popupWorkOther": {
+    "message": "$1, работа $2 — скачается в фоне, файл появится в «Загрузках»."
+  },
+  "popupWorkOpen": {
+    "message": "$1, работа $2 — откроется в новой вкладке для перевода."
+  },
+  "popupOpenWork": {
+    "message": "Открыть работу"
+  },
+  "video": {
+    "message": "Видео"
+  },
+  "audio": {
+    "message": "Аудио"
+  },
+  "trPressTranslate": {
+    "message": "Нажмите «Перевести» в браузере — сохранение начнётся само."
+  },
+  "trPressTranslateDetail": {
+    "message": "Значок перевода — в адресной строке, или правой кнопкой по странице → «Перевести». Уже написано «Переведено», а текст не переводится — нажмите «Показать оригинал» и снова «Перевести». × — отмена."
+  },
+  "trScrolling": {
+    "message": "Прокручиваю, чтобы перевелась вся работа…"
+  },
+  "trPercent": {
+    "message": "$1 % работы"
+  },
+  "trImages": {
+    "message": "Собираю файл: картинки $1 из $2"
+  },
+  "trSaved": {
+    "message": "Сохранено с переводом"
+  },
+  "trTimeout": {
+    "message": "«Перевести» так и не нажали — сохранение отменено."
+  },
+  "trFileSuffix": {
+    "message": "перевод"
   }
 }

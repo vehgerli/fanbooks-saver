@@ -11,15 +11,6 @@
   "popupFormat": {
     "message": "Formato"
   },
-  "popupThisPage": {
-    "message": "Esta página"
-  },
-  "popupDownload": {
-    "message": "Descargar obra"
-  },
-  "popupByLink": {
-    "message": "Por enlace"
-  },
   "popupDownloadLink": {
     "message": "Descargar"
   },
@@ -29,17 +20,8 @@
   "popupSoon": {
     "message": "$1 (pronto)"
   },
-  "popupOpenSupported": {
-    "message": "Abre una obra en uno de los sitios de abajo."
-  },
   "popupPlatformSoon": {
     "message": "$1: el soporte llegará pronto."
-  },
-  "popupOpenWorkPage": {
-    "message": "$1: abre la página de la propia obra."
-  },
-  "popupWorkFound": {
-    "message": "$1, obra $2."
   },
   "popupStartFailed": {
     "message": "No se pudo iniciar la descarga"
@@ -187,5 +169,71 @@
   },
   "errNoPartText": {
     "message": "El sitio no muestra el texto de la parte $1."
+  },
+  "popupWork": {
+    "message": "Obra"
+  },
+  "popupTranslate": {
+    "message": "Con la traducción del navegador"
+  },
+  "popupTranslateHint": {
+    "message": "La obra completa se abrirá en la pestaña: pulsa «Traducir» en el navegador y el archivo se guardará con la traducción, imágenes y enlaces."
+  },
+  "popupTypeSite": {
+    "message": "Pega un enlace o escribe un sitio y pulsa Tab: $1."
+  },
+  "popupPressTab": {
+    "message": "Pulsa Tab para insertar la dirección del sitio."
+  },
+  "popupUnsupported": {
+    "message": "El enlace no es de un sitio compatible."
+  },
+  "popupAddWorkId": {
+    "message": "$1: añade el número de la obra."
+  },
+  "popupNotWork": {
+    "message": "$1: no es un enlace a una obra."
+  },
+  "popupWorkHere": {
+    "message": "$1, obra $2: abierta en esta pestaña."
+  },
+  "popupWorkOther": {
+    "message": "$1, obra $2: se descargará en segundo plano y el archivo aparecerá en Descargas."
+  },
+  "popupWorkOpen": {
+    "message": "$1, obra $2: se abrirá en una pestaña nueva para traducirla."
+  },
+  "popupOpenWork": {
+    "message": "Abrir obra"
+  },
+  "video": {
+    "message": "Vídeo"
+  },
+  "audio": {
+    "message": "Audio"
+  },
+  "trPressTranslate": {
+    "message": "Pulsa «Traducir» en el navegador: el guardado empezará solo."
+  },
+  "trPressTranslateDetail": {
+    "message": "El icono de traducir está en la barra de direcciones, o clic derecho en la página → «Traducir». ¿Ya dice «Traducido» pero el texto no se traduce? Pulsa «Mostrar original» y otra vez «Traducir». × — cancelar."
+  },
+  "trScrolling": {
+    "message": "Desplazando para que se traduzca toda la obra…"
+  },
+  "trPercent": {
+    "message": "$1 % de la obra"
+  },
+  "trImages": {
+    "message": "Creando el archivo: imágenes $1 de $2"
+  },
+  "trSaved": {
+    "message": "Guardado con la traducción"
+  },
+  "trTimeout": {
+    "message": "No se pulsó «Traducir»: guardado cancelado."
+  },
+  "trFileSuffix": {
+    "message": "traducido"
   }
 }

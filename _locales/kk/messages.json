@@ -11,15 +11,6 @@
   "popupFormat": {
     "message": "Пішім"
   },
-  "popupThisPage": {
-    "message": "Осы бет"
-  },
-  "popupDownload": {
-    "message": "Шығарманы жүктеу"
-  },
-  "popupByLink": {
-    "message": "Сілтеме бойынша"
-  },
   "popupDownloadLink": {
     "message": "Жүктеу"
   },
@@ -29,17 +20,8 @@
   "popupSoon": {
     "message": "$1 (жақында)"
   },
-  "popupOpenSupported": {
-    "message": "Төмендегі сайттардың бірінде шығарманы ашыңыз."
-  },
   "popupPlatformSoon": {
     "message": "$1 — қолдау жақында болады."
-  },
-  "popupOpenWorkPage": {
-    "message": "$1: шығарманың өз бетін ашыңыз."
-  },
-  "popupWorkFound": {
-    "message": "$1, шығарма $2."
   },
   "popupStartFailed": {
     "message": "Жүктеуді бастау мүмкін болмады"
@@ -187,5 +169,71 @@
   },
   "errNoPartText": {
     "message": "Сайт $1-бөлімнің мәтінін көрсетпейді."
+  },
+  "popupWork": {
+    "message": "Шығарма"
+  },
+  "popupTranslate": {
+    "message": "Браузер аудармасымен"
+  },
+  "popupTranslateHint": {
+    "message": "Бүкіл шығарма қойындыда ашылады — браузерде «Аудару» түймесін басыңыз, файл аудармасымен, суреттерімен және сілтемелерімен сақталады."
+  },
+  "popupTypeSite": {
+    "message": "Сілтемені қойыңыз немесе сайт атауын теріп, Tab басыңыз: $1."
+  },
+  "popupPressTab": {
+    "message": "Tab басыңыз — сайт мекенжайы қойылады."
+  },
+  "popupUnsupported": {
+    "message": "Сілтеме қолдау көрсетілетін сайттан емес."
+  },
+  "popupAddWorkId": {
+    "message": "$1: шығарма нөмірін жазыңыз."
+  },
+  "popupNotWork": {
+    "message": "$1: бұл шығармаға сілтеме емес."
+  },
+  "popupWorkHere": {
+    "message": "$1, шығарма $2 — осы қойындыда ашық."
+  },
+  "popupWorkOther": {
+    "message": "$1, шығарма $2 — фонда жүктеледі, файл «Жүктеулерде» пайда болады."
+  },
+  "popupWorkOpen": {
+    "message": "$1, шығарма $2 — аудару үшін жаңа қойындыда ашылады."
+  },
+  "popupOpenWork": {
+    "message": "Шығарманы ашу"
+  },
+  "video": {
+    "message": "Бейне"
+  },
+  "audio": {
+    "message": "Аудио"
+  },
+  "trPressTranslate": {
+    "message": "Браузерде «Аудару» түймесін басыңыз — сақтау өзі басталады."
+  },
+  "trPressTranslateDetail": {
+    "message": "Аудару белгісі — мекенжай жолында, немесе бетті тінтуірдің оң жағымен басыңыз → «Аудару». «Аударылды» деп тұр, бірақ мәтін аударылмаса — «Түпнұсқаны көрсету», содан кейін қайта «Аудару» басыңыз. × — бас тарту."
+  },
+  "trScrolling": {
+    "message": "Бүкіл шығарма аударылуы үшін айналдырып жатырмын…"
+  },
+  "trPercent": {
+    "message": "шығарманың $1 %"
+  },
+  "trImages": {
+    "message": "Файлды жинап жатырмын: суреттер $1 / $2"
+  },
+  "trSaved": {
+    "message": "Аудармасымен сақталды"
+  },
+  "trTimeout": {
+    "message": "«Аудару» басылмады — сақтау тоқтатылды."
+  },
+  "trFileSuffix": {
+    "message": "аударма"
   }
 }

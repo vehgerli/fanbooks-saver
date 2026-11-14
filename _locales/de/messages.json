@@ -11,15 +11,6 @@
   "popupFormat": {
     "message": "Format"
   },
-  "popupThisPage": {
-    "message": "Diese Seite"
-  },
-  "popupDownload": {
-    "message": "Werk herunterladen"
-  },
-  "popupByLink": {
-    "message": "Per Link"
-  },
   "popupDownloadLink": {
     "message": "Herunterladen"
   },
@@ -29,17 +20,8 @@
   "popupSoon": {
     "message": "$1 (bald)"
   },
-  "popupOpenSupported": {
-    "message": "Öffne ein Werk auf einer der unten genannten Seiten."
-  },
   "popupPlatformSoon": {
     "message": "$1: Unterstützung kommt bald."
-  },
-  "popupOpenWorkPage": {
-    "message": "$1: Öffne die Seite des Werks selbst."
-  },
-  "popupWorkFound": {
-    "message": "$1, Werk $2."
   },
   "popupStartFailed": {
     "message": "Download konnte nicht gestartet werden"
@@ -187,5 +169,71 @@
   },
   "errNoPartText": {
     "message": "Die Seite zeigt den Text von Teil $1 nicht an."
+  },
+  "popupWork": {
+    "message": "Werk"
+  },
+  "popupTranslate": {
+    "message": "Mit Browser-Übersetzung"
+  },
+  "popupTranslateHint": {
+    "message": "Das ganze Werk öffnet sich im Tab — klicke im Browser auf „Übersetzen“, und die Datei wird mit Übersetzung, Bildern und Links gespeichert."
+  },
+  "popupTypeSite": {
+    "message": "Füge einen Link ein oder tippe eine Seite und drücke Tab: $1."
+  },
+  "popupPressTab": {
+    "message": "Drücke Tab, um die Adresse der Seite einzufügen."
+  },
+  "popupUnsupported": {
+    "message": "Der Link stammt nicht von einer unterstützten Seite."
+  },
+  "popupAddWorkId": {
+    "message": "$1: ergänze die Nummer des Werks."
+  },
+  "popupNotWork": {
+    "message": "$1: das ist kein Link zu einem Werk."
+  },
+  "popupWorkHere": {
+    "message": "$1, Werk $2 — in diesem Tab geöffnet."
+  },
+  "popupWorkOther": {
+    "message": "$1, Werk $2 — wird im Hintergrund geladen, die Datei erscheint unter Downloads."
+  },
+  "popupWorkOpen": {
+    "message": "$1, Werk $2 — öffnet sich zum Übersetzen in einem neuen Tab."
+  },
+  "popupOpenWork": {
+    "message": "Werk öffnen"
+  },
+  "video": {
+    "message": "Video"
+  },
+  "audio": {
+    "message": "Audio"
+  },
+  "trPressTranslate": {
+    "message": "Klicke im Browser auf „Übersetzen“ — das Speichern beginnt von selbst."
+  },
+  "trPressTranslateDetail": {
+    "message": "Das Übersetzen-Symbol ist in der Adressleiste, oder Rechtsklick auf die Seite → „Übersetzen“. Steht schon „Übersetzt“, aber der Text wird nicht übersetzt? „Original anzeigen“ und erneut „Übersetzen“ klicken. × — abbrechen."
+  },
+  "trScrolling": {
+    "message": "Scrolle, damit das ganze Werk übersetzt wird…"
+  },
+  "trPercent": {
+    "message": "$1 % des Werks"
+  },
+  "trImages": {
+    "message": "Erstelle die Datei: Bilder $1 von $2"
+  },
+  "trSaved": {
+    "message": "Mit Übersetzung gespeichert"
+  },
+  "trTimeout": {
+    "message": "„Übersetzen“ wurde nicht geklickt — Speichern abgebrochen."
+  },
+  "trFileSuffix": {
+    "message": "übersetzt"
   }
 }
