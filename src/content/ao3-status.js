@@ -40,6 +40,7 @@
     .fbs-st-menu li[aria-checked="true"] { color: #900; font-weight: bold; }
     .fbs-st-menu li.fbs-st-none { color: #888; border-bottom: 1px solid #eee; margin-bottom: 2px; }
     .fbs-st-work { margin-top: .2em; }
+    .fbs-st-blurb { margin-top: .4em; }
   `;
 
   /** Номер работы по ссылке: /works/123, /works/123/chapters/456. */
@@ -166,15 +167,16 @@
     }
   }
 
-  /** Карточки работ в списках: li.blurb со ссылкой на работу в заголовке. Плашка — справа, под датой. */
+  /** Карточки работ в списках: li.blurb со ссылкой на работу в заголовке. Плашка — справа, сразу под
+   *  шапкой карточки: внутри шапки дата и значки стоят абсолютно и на узком окне наезжают на плашку. */
   function addToBlurbs() {
     for (const blurb of document.querySelectorAll('li.blurb')) {
       const link = blurb.querySelector('.header h4.heading a[href*="/works/"]');
       const id = link && workIdOf(link.getAttribute('href'));
       if (!id || blurb.querySelector('.fbs-st')) continue;
-      const box = makeBox(id, link.textContent.trim());
-      const fandoms = blurb.querySelector(':scope > .header > h5.fandoms');
-      if (fandoms) fandoms.before(box);
+      const box = makeBox(id, link.textContent.trim(), 'fbs-st-blurb');
+      const header = blurb.querySelector(':scope > .header');
+      if (header) header.after(box);
       else link.closest('h4').after(box);
     }
   }
