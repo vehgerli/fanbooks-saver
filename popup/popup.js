@@ -151,6 +151,12 @@ async function init() {
   document.getElementById('sites').textContent =
     t('popupSites', platforms.list.map((p) => (p.ready ? p.name : t('popupSoon', p.name))).join(', '));
 
+  document.getElementById('statuses').addEventListener('click', async (event) => {
+    event.preventDefault();
+    await chrome.tabs.create({ url: chrome.runtime.getURL('popup/statuses.html') });
+    window.close();
+  });
+
   const rateLink = document.getElementById('rate');
   rateLink.textContent = t('popupRate');
   rateLink.addEventListener('click', async (event) => {

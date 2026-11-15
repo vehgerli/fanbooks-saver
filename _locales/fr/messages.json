@@ -29,6 +29,57 @@
   "popupBackground": {
     "message": "Téléchargement en arrière-plan : le fichier apparaîtra dans Téléchargements."
   },
+  "statusLabel": {
+    "message": "Mon statut :"
+  },
+  "statusNone": {
+    "message": "Aucun statut"
+  },
+  "statusAdd": {
+    "message": "+ Statut"
+  },
+  "statusRead": {
+    "message": "Lu"
+  },
+  "statusReading": {
+    "message": "En cours"
+  },
+  "statusReadDl": {
+    "message": "Lu, téléchargé"
+  },
+  "statusReadingDl": {
+    "message": "En cours, téléchargé"
+  },
+  "statusesLink": {
+    "message": "Statuts AO3 : enregistrer dans un fichier ou charger"
+  },
+  "statusesTitle": {
+    "message": "Statuts de lecture sur AO3"
+  },
+  "statusesCount": {
+    "message": "Œuvres avec un statut dans ce navigateur : $1"
+  },
+  "statusesExport": {
+    "message": "Enregistrer"
+  },
+  "statusesImport": {
+    "message": "Charger un fichier"
+  },
+  "statusesExported": {
+    "message": "Statuts enregistrés : $1. Le fichier est dans Téléchargements."
+  },
+  "statusesImported": {
+    "message": "Chargés depuis le fichier : $1."
+  },
+  "statusesEmpty": {
+    "message": "Rien à enregistrer : aucune œuvre n’a de statut."
+  },
+  "statusesBadFile": {
+    "message": "Ce n’est pas un fichier de statuts FanBooks Saver."
+  },
+  "statusesHint": {
+    "message": "Les statuts ne sont gardés que dans ce navigateur. Le fichier en est une copie : enregistrez-le avant de réinstaller l’extension ou chargez-le sur un autre ordinateur. Le chargement ajoute les statuts du fichier ; si une œuvre est marquée ici et dans le fichier, le statut le plus récent est conservé."
+  },
   "menuLink": {
     "message": "Télécharger l’œuvre du lien"
   },

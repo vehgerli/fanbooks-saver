@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FanBooks Saver",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "__MSG_extDescription__",
   "default_locale": "en",
   "icons": {
@@ -25,6 +25,13 @@
     "scripting",
     "storage",
     "contextMenus"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://archiveofourown.org/*", "https://*.archiveofourown.org/*", "https://ao3.org/*"],
+      "js": ["src/platforms.js", "src/content/ao3-status.js"],
+      "run_at": "document_idle"
+    }
   ],
   "host_permissions": [
     "https://archiveofourown.org/*",

@@ -29,6 +29,57 @@
   "popupBackground": {
     "message": "Фонда жүктеп жатырмын — файл «Жүктеулер» қалтасында пайда болады."
   },
+  "statusLabel": {
+    "message": "Менің мәртебем:"
+  },
+  "statusNone": {
+    "message": "Мәртебесіз"
+  },
+  "statusAdd": {
+    "message": "+ Мәртебе"
+  },
+  "statusRead": {
+    "message": "Оқылды"
+  },
+  "statusReading": {
+    "message": "Оқып жатырмын"
+  },
+  "statusReadDl": {
+    "message": "Оқылды, жүктелді"
+  },
+  "statusReadingDl": {
+    "message": "Оқып жатырмын, жүктелді"
+  },
+  "statusesLink": {
+    "message": "AO3 мәртебелері: файлға сақтау немесе жүктеу"
+  },
+  "statusesTitle": {
+    "message": "AO3-тегі оқу мәртебелері"
+  },
+  "statusesCount": {
+    "message": "Осы браузердегі мәртебесі бар шығармалар: $1"
+  },
+  "statusesExport": {
+    "message": "Файлға сақтау"
+  },
+  "statusesImport": {
+    "message": "Файлдан жүктеу"
+  },
+  "statusesExported": {
+    "message": "Сақталған мәртебелер: $1. Файл «Жүктеулер» қалтасында."
+  },
+  "statusesImported": {
+    "message": "Файлдан жүктелді: $1."
+  },
+  "statusesEmpty": {
+    "message": "Әзірге сақтайтын ештеңе жоқ: мәртебелер жоқ."
+  },
+  "statusesBadFile": {
+    "message": "Бұл FanBooks Saver мәртебелер файлы емес."
+  },
+  "statusesHint": {
+    "message": "Мәртебелер тек осы браузерде сақталады. Файл — олардың көшірмесі: кеңейтпені қайта орнату алдында сақтаңыз немесе басқа компьютерде жүктеңіз. Жүктеу файлдағы мәртебелерді қосады; шығарма мұнда да, файлда да белгіленсе, жаңарағы қалады."
+  },
   "menuLink": {
     "message": "Шығарманы сілтеме бойынша жүктеу"
   },

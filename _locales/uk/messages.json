@@ -29,6 +29,57 @@
   "popupBackground": {
     "message": "Завантажую у фоні — файл з’явиться в «Завантаженнях»."
   },
+  "statusLabel": {
+    "message": "Мій статус:"
+  },
+  "statusNone": {
+    "message": "Без статусу"
+  },
+  "statusAdd": {
+    "message": "+ Статус"
+  },
+  "statusRead": {
+    "message": "Прочитано"
+  },
+  "statusReading": {
+    "message": "Читаю"
+  },
+  "statusReadDl": {
+    "message": "Прочитано, завантажено"
+  },
+  "statusReadingDl": {
+    "message": "Читаю, завантажено"
+  },
+  "statusesLink": {
+    "message": "Статуси AO3: зберегти у файл або завантажити"
+  },
+  "statusesTitle": {
+    "message": "Статуси читання на AO3"
+  },
+  "statusesCount": {
+    "message": "Робіт зі статусом у цьому браузері: $1"
+  },
+  "statusesExport": {
+    "message": "Зберегти у файл"
+  },
+  "statusesImport": {
+    "message": "Завантажити з файлу"
+  },
+  "statusesExported": {
+    "message": "Збережено статусів: $1. Файл — у «Завантаженнях»."
+  },
+  "statusesImported": {
+    "message": "Завантажено з файлу: $1."
+  },
+  "statusesEmpty": {
+    "message": "Поки нічого зберігати: статусів немає."
+  },
+  "statusesBadFile": {
+    "message": "Це не файл статусів FanBooks Saver."
+  },
+  "statusesHint": {
+    "message": "Статуси зберігаються лише в цьому браузері. Файл — їхня копія: збережіть її перед перевстановленням розширення або завантажте на іншому комп’ютері. Завантаження додає статуси з файлу; якщо робота позначена і тут, і у файлі, залишається новіший статус."
+  },
   "menuLink": {
     "message": "Завантажити роботу за посиланням"
   },

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FanBooks Saver</title>
+    <link rel="stylesheet" href="popup.css" />
+    <style>
+      body {
+        width: auto;
+        max-width: 460px;
+        margin: 40px auto;
+        padding: 20px 24px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+      }
+      .actions button {
+        flex: 1;
+        padding: 9px 12px;
+      }
+      .hint {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      #result.error {
+        color: var(--error);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="../icons/icon32.png" alt="" width="24" height="24" />
+      <h1 data-i18n="statusesTitle"></h1>
+    </header>
+
+    <section>
+      <p id="count"></p>
+      <div class="actions">
+        <button id="export" type="button" data-i18n="statusesExport"></button>
+        <button id="import" type="button" data-i18n="statusesImport"></button>
+      </div>
+      <input id="file" type="file" accept=".json,application/json" hidden />
+      <p id="result" class="status"></p>
+    </section>
+
+    <p class="hint" data-i18n="statusesHint"></p>
+
+    <script src="../src/platforms.js"></script>
+    <script src="statuses.js"></script>
+  </body>
+</html>

@@ -19,9 +19,14 @@ to read offline, on an e-reader, or just to keep.
 
 - **All chapters in one file** — with the work's header: title, author, tags, summary and notes.
 - **The author's formatting is kept**: italics, bold, alignment, lists, images.
-- **Three ways to download**: from the open page, by pasting a link, or from the right-click menu.
+- **Three ways to download**: from the open page, by pasting a link (type “ao3”, “ficbook”… and press
+  Tab to get the site's address), or from the right-click menu. A pasted link downloads in a background
+  tab — you stay on your page.
 - **With browser translation** (HTML): the whole work opens in the tab, you press “Translate” in the
   browser, and the file is saved translated — with pictures, links and embedded video.
+- **Reading status on AO3**: every work in lists and on its own page gets a small “My status” box —
+  Read, Reading, Read/Reading + downloaded. Stored only in your browser; you can save all statuses
+  to a file and load them back (link at the bottom of the extension window).
 - **When AO3 is down**, the extension looks for a saved copy of the work on ao3saver and in the
   Internet Archive's Wayback Machine, and tells you where the copy came from and how old it is.
 - **8 interface languages**: English, Русский, Українська, Қазақша, Español, Deutsch, Français, Italiano.

@@ -29,6 +29,57 @@
   "popupBackground": {
     "message": "Descargando en segundo plano: el archivo aparecerá en Descargas."
   },
+  "statusLabel": {
+    "message": "Mi estado:"
+  },
+  "statusNone": {
+    "message": "Sin estado"
+  },
+  "statusAdd": {
+    "message": "+ Estado"
+  },
+  "statusRead": {
+    "message": "Leído"
+  },
+  "statusReading": {
+    "message": "Leyendo"
+  },
+  "statusReadDl": {
+    "message": "Leído, descargado"
+  },
+  "statusReadingDl": {
+    "message": "Leyendo, descargado"
+  },
+  "statusesLink": {
+    "message": "Estados de AO3: guardar en archivo o cargar"
+  },
+  "statusesTitle": {
+    "message": "Estados de lectura en AO3"
+  },
+  "statusesCount": {
+    "message": "Obras con estado en este navegador: $1"
+  },
+  "statusesExport": {
+    "message": "Guardar en archivo"
+  },
+  "statusesImport": {
+    "message": "Cargar desde archivo"
+  },
+  "statusesExported": {
+    "message": "Estados guardados: $1. El archivo está en Descargas."
+  },
+  "statusesImported": {
+    "message": "Cargados del archivo: $1."
+  },
+  "statusesEmpty": {
+    "message": "Aún no hay nada que guardar: ninguna obra tiene estado."
+  },
+  "statusesBadFile": {
+    "message": "Este no es un archivo de estados de FanBooks Saver."
+  },
+  "statusesHint": {
+    "message": "Los estados solo se guardan en este navegador. El archivo es una copia: guárdalo antes de reinstalar la extensión o cárgalo en otro ordenador. Al cargar se añaden los estados del archivo; si una obra está marcada aquí y en el archivo, se queda el estado más reciente."
+  },
   "menuLink": {
     "message": "Descargar obra del enlace"
   },

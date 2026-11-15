@@ -29,6 +29,57 @@
   "popupBackground": {
     "message": "Wird im Hintergrund heruntergeladen – die Datei erscheint in „Downloads“."
   },
+  "statusLabel": {
+    "message": "Mein Status:"
+  },
+  "statusNone": {
+    "message": "Kein Status"
+  },
+  "statusAdd": {
+    "message": "+ Status"
+  },
+  "statusRead": {
+    "message": "Gelesen"
+  },
+  "statusReading": {
+    "message": "Lese ich"
+  },
+  "statusReadDl": {
+    "message": "Gelesen, heruntergeladen"
+  },
+  "statusReadingDl": {
+    "message": "Lese ich, heruntergeladen"
+  },
+  "statusesLink": {
+    "message": "AO3-Status: in Datei speichern oder laden"
+  },
+  "statusesTitle": {
+    "message": "Lesestatus auf AO3"
+  },
+  "statusesCount": {
+    "message": "Werke mit Status in diesem Browser: $1"
+  },
+  "statusesExport": {
+    "message": "In Datei speichern"
+  },
+  "statusesImport": {
+    "message": "Aus Datei laden"
+  },
+  "statusesExported": {
+    "message": "$1 Status gespeichert. Die Datei liegt in „Downloads“."
+  },
+  "statusesImported": {
+    "message": "Aus der Datei geladen: $1."
+  },
+  "statusesEmpty": {
+    "message": "Noch nichts zu speichern: kein Werk hat einen Status."
+  },
+  "statusesBadFile": {
+    "message": "Das ist keine Status-Datei von FanBooks Saver."
+  },
+  "statusesHint": {
+    "message": "Die Status werden nur in diesem Browser gespeichert. Die Datei ist eine Kopie: Speichere sie vor einer Neuinstallation der Erweiterung oder lade sie auf einem anderen Computer. Beim Laden kommen die Status aus der Datei hinzu; ist ein Werk hier und in der Datei markiert, bleibt der neuere Status."
+  },
   "menuLink": {
     "message": "Werk über Link herunterladen"
   },

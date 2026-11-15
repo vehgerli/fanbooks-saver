@@ -29,6 +29,57 @@
   "popupBackground": {
     "message": "Download in background: il file comparirà in Download."
   },
+  "statusLabel": {
+    "message": "Il mio stato:"
+  },
+  "statusNone": {
+    "message": "Nessuno stato"
+  },
+  "statusAdd": {
+    "message": "+ Stato"
+  },
+  "statusRead": {
+    "message": "Letto"
+  },
+  "statusReading": {
+    "message": "In lettura"
+  },
+  "statusReadDl": {
+    "message": "Letto, scaricato"
+  },
+  "statusReadingDl": {
+    "message": "In lettura, scaricato"
+  },
+  "statusesLink": {
+    "message": "Stati AO3: salva in un file o carica"
+  },
+  "statusesTitle": {
+    "message": "Stati di lettura su AO3"
+  },
+  "statusesCount": {
+    "message": "Opere con uno stato in questo browser: $1"
+  },
+  "statusesExport": {
+    "message": "Salva in un file"
+  },
+  "statusesImport": {
+    "message": "Carica da file"
+  },
+  "statusesExported": {
+    "message": "Stati salvati: $1. Il file è in Download."
+  },
+  "statusesImported": {
+    "message": "Caricati dal file: $1."
+  },
+  "statusesEmpty": {
+    "message": "Ancora niente da salvare: nessuna opera ha uno stato."
+  },
+  "statusesBadFile": {
+    "message": "Questo non è un file di stati di FanBooks Saver."
+  },
+  "statusesHint": {
+    "message": "Gli stati sono salvati solo in questo browser. Il file ne è una copia: salvalo prima di reinstallare l’estensione o caricalo su un altro computer. Il caricamento aggiunge gli stati dal file; se un’opera è segnata qui e nel file, resta lo stato più recente."
+  },
   "menuLink": {
     "message": "Scarica l’opera dal link"
   },

@@ -29,6 +29,57 @@
   "popupBackground": {
     "message": "Downloading in the background — the file will appear in Downloads."
   },
+  "statusLabel": {
+    "message": "My status:"
+  },
+  "statusNone": {
+    "message": "No status"
+  },
+  "statusAdd": {
+    "message": "+ Status"
+  },
+  "statusRead": {
+    "message": "Read"
+  },
+  "statusReading": {
+    "message": "Reading"
+  },
+  "statusReadDl": {
+    "message": "Read, downloaded"
+  },
+  "statusReadingDl": {
+    "message": "Reading, downloaded"
+  },
+  "statusesLink": {
+    "message": "AO3 statuses: save to file or load"
+  },
+  "statusesTitle": {
+    "message": "Reading statuses on AO3"
+  },
+  "statusesCount": {
+    "message": "Works with a status in this browser: $1"
+  },
+  "statusesExport": {
+    "message": "Save to file"
+  },
+  "statusesImport": {
+    "message": "Load from file"
+  },
+  "statusesExported": {
+    "message": "Saved $1 statuses to Downloads."
+  },
+  "statusesImported": {
+    "message": "Loaded from the file: $1."
+  },
+  "statusesEmpty": {
+    "message": "Nothing to save yet: no work has a status."
+  },
+  "statusesBadFile": {
+    "message": "This is not a FanBooks Saver statuses file."
+  },
+  "statusesHint": {
+    "message": "Statuses live only in this browser. The file is a copy: keep it before reinstalling the extension or load it on another computer. Loading adds statuses from the file; if a work is marked both here and in the file, the newer status stays."
+  },
   "menuLink": {
     "message": "Download work from link"
   },
