@@ -4,6 +4,22 @@
   if (FBS.start) return;
   let busy = false;
 
+  // Скачали работу AO3 — «Мой статус» получает «скачано»: нет статуса → Скачана, Прочитано → Прочитано, скачано,
+  // Читаю → Читаю, скачано. Заодно запоминается дата обновления из скачанной работы — «Есть обновление!» пропадает.
+  const DOWNLOADED = { '': 'dl', read: 'readDl', reading: 'readingDl', readDl: 'readDl', readingDl: 'readingDl', dl: 'dl' };
+
+  async function markDownloaded(workId, work) {
+    const key = `ao3:${workId}`;
+    const saved = (await chrome.storage.local.get(key))[key];
+    const s = DOWNLOADED[saved?.s ?? ''];
+    if (!s) return;
+    const stats = work.meta?.map((m) => m.value).join(' ') ?? '';
+    const date = (stats.match(/(?:Updated|Completed):\s*(\d{4}-\d{2}-\d{2})/) ?? stats.match(/Published:\s*(\d{4}-\d{2}-\d{2})/))?.[1];
+    // Копия из архива может быть старше того, что уже запомнено, — берём более позднюю дату.
+    const upd = [saved?.upd, date].filter(Boolean).sort().pop();
+    await chrome.storage.local.set({ [key]: { s, title: work.title || saved?.title || '', at: Date.now(), ...(upd && { upd }) } });
+  }
+
   /**
    * background — скачивание по ссылке в фоновой вкладке: ход и итог ещё и сообщениями —
    * окошку расширения (показать) и фоновому скрипту (закрыть вкладку или показать её с ошибкой).
@@ -42,6 +58,7 @@
       const withTranslation = translate && format === 'html';
       const name = withTranslation ? await FBS.translated.run(work, file, working) : (output.save(file), file.name);
       const chapters = work.chapters.length;
+      if (platform.id === 'ao3') await markDownloaded(workId, work).catch(() => {});
       // Счётчик для просьбы об оценке; если хранилище недоступно — просто не просим.
       const askRating = await FBS.rating.countDownload().catch(() => false);
       const text = withTranslation ? t('trSaved') : work.copy ? t('runSavedCopy', work.copy) : t('runSaved');
