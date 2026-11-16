@@ -25,7 +25,7 @@ to read offline, on an e-reader, or just to keep.
 - **With browser translation** (HTML): the whole work opens in the tab, you press “Translate” in the
   browser, and the file is saved translated — with pictures, links and embedded video.
 - **Reading status on AO3**: every work in lists and on its own page gets a small “My status” box —
-  Read, Reading, Read/Reading + downloaded. Stored only in your browser; you can save all statuses
+  Read, Reading, Read/Reading + downloaded, Downloaded. If the work is updated after you set the status, you'll see “Updated!” next to it. Stored only in your browser; you can save all statuses
   to a file and load them back (link at the bottom of the extension window).
 - **When AO3 is down**, the extension looks for a saved copy of the work on ao3saver and in the
   Internet Archive's Wayback Machine, and tells you where the copy came from and how old it is.

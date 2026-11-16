@@ -2,11 +2,11 @@
 // Открывается из окошка расширения отдельной вкладкой: выбор файла из самого окошка
 // в некоторых системах закрывает окошко раньше, чем файл выбран.
 //
-// Файл — JSON: { app: 'FanBooks Saver', type: 'ao3-statuses', version: 1, exported, works: { <номер>: { s, title, at } } }.
+// Файл — JSON: { app: 'FanBooks Saver', type: 'ao3-statuses', version: 1, exported, works: { <номер>: { s, title, at, upd? } } }.
 // При загрузке у работы, отмеченной и тут, и в файле, остаётся более новый статус (по at).
 const { t, loadLanguage } = globalThis.FBS;
 
-const STATUSES = new Set(['read', 'reading', 'readDl', 'readingDl']);
+const STATUSES = new Set(['read', 'reading', 'readDl', 'readingDl', 'dl']);
 const PREFIX = 'ao3:';
 
 const countEl = document.getElementById('count');
@@ -69,6 +69,7 @@ fileInput.addEventListener('change', async () => {
     const at = Number(item.at) || 0;
     if (current[id] && (Number(current[id].at) || 0) >= at) continue; // Здесь статус новее или тот же.
     updates[PREFIX + id] = { s: item.s, title: String(item.title ?? '').slice(0, 500), at };
+    if (/^\d{4}-\d{2}-\d{2}$/.test(item.upd)) updates[PREFIX + id].upd = item.upd;
   }
   await chrome.storage.local.set(updates);
   setResult(t('statusesImported', Object.keys(updates).length));

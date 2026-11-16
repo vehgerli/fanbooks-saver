@@ -50,6 +50,15 @@
   "statusReadingDl": {
     "message": "In lettura, scaricato"
   },
+  "statusDl": {
+    "message": "Scaricata"
+  },
+  "statusUpdated": {
+    "message": "Aggiornata!"
+  },
+  "statusUpdatedHint": {
+    "message": "L’opera è stata aggiornata dopo che hai impostato lo stato. Scegli di nuovo lo stato per nascondere l’avviso."
+  },
   "statusesLink": {
     "message": "Stati AO3: salva in un file o carica"
   },

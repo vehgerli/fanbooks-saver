@@ -50,6 +50,15 @@
   "statusReadingDl": {
     "message": "Reading, downloaded"
   },
+  "statusDl": {
+    "message": "Downloaded"
+  },
+  "statusUpdated": {
+    "message": "Updated!"
+  },
+  "statusUpdatedHint": {
+    "message": "The work was updated after you set the status. Choose the status again to hide this."
+  },
   "statusesLink": {
     "message": "AO3 statuses: save to file or load"
   },

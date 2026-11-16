@@ -50,6 +50,15 @@
   "statusReadingDl": {
     "message": "En cours, téléchargé"
   },
+  "statusDl": {
+    "message": "Téléchargée"
+  },
+  "statusUpdated": {
+    "message": "Mise à jour !"
+  },
+  "statusUpdatedHint": {
+    "message": "L’œuvre a été mise à jour après que vous avez choisi le statut. Choisissez-le à nouveau pour masquer ceci."
+  },
   "statusesLink": {
     "message": "Statuts AO3 : enregistrer dans un fichier ou charger"
   },

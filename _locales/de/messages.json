@@ -50,6 +50,15 @@
   "statusReadingDl": {
     "message": "Lese ich, heruntergeladen"
   },
+  "statusDl": {
+    "message": "Heruntergeladen"
+  },
+  "statusUpdated": {
+    "message": "Aktualisiert!"
+  },
+  "statusUpdatedHint": {
+    "message": "Das Werk wurde aktualisiert, nachdem du den Status gesetzt hast. Wähle den Status erneut, um den Hinweis auszublenden."
+  },
   "statusesLink": {
     "message": "AO3-Status: in Datei speichern oder laden"
   },

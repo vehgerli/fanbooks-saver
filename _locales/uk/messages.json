@@ -50,6 +50,15 @@
   "statusReadingDl": {
     "message": "Читаю, завантажено"
   },
+  "statusDl": {
+    "message": "Завантажена"
+  },
+  "statusUpdated": {
+    "message": "Є оновлення!"
+  },
+  "statusUpdatedHint": {
+    "message": "Робота оновилася після того, як ви поставили статус. Виберіть статус знову, щоб прибрати напис."
+  },
   "statusesLink": {
     "message": "Статуси AO3: зберегти у файл або завантажити"
   },
